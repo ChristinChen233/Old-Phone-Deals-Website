@@ -65,6 +65,6 @@ $ npm start
 
 ## Developers
 - Main page: [Rina Yoo](github.com/RinaYoo) (full stack)
-- User Authentication system: Ruoshui(Christin) Chen (full stack)
+- User Authentication system: [Ruoshui(Christin) Chen](https://github.com/ChristinChen233) (full stack)
 - Checkout Page (shopping cart): Ruoshui(Christin) Chen (front end), Jingyu(Lucas) Lu (back end)
 - User Profile page: Ruoshui(Christin) Chen & Lucas (front end), Jingyu(Lucas) Lu (back end)
