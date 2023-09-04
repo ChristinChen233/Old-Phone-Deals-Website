@@ -62,3 +62,9 @@ $ npm start
 ### Stopping
 1. Stop the server with `Ctrl+C`. Ensure database is connected.
 2. Stop the client with `Ctrl+C`.
+
+## Developers
+- Main page: [Rina Yoo](https://eff.org) (full stack)
+- User Authentication system: Ruoshui(Christin) Chen (full stack)
+- Checkout Page (shopping cart): Ruoshui(Christin) Chen (front end), Jingyu(Lucas) Lu (back end)
+- User Profile page: Ruoshui(Christin) Chen & Lucas (front end), Jingyu(Lucas) Lu (back end)
