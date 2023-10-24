@@ -1,13 +1,11 @@
-import React, {useEffect, useState, useParams} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import {useNavigate, Link, useSearchParams } from 'react-router-dom'
+import {Link, useSearchParams } from 'react-router-dom'
 import { baseURL } from "../../utils/constant";
 import "../../index.css"
 import './Login.css'
 
 function ResetPsw() {
-    const history = useNavigate(); //navigate between different pages
-
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('')
     const [errs, setErrs] = useState({});

@@ -5,6 +5,7 @@ import { baseURL } from "../../utils/constant";
 import "../../index.css";
 import "./Checkout.css";
 
+
 const Checkout = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [phones, setPhones] = useState(null);
