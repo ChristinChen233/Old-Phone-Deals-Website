@@ -1,5 +1,5 @@
 import { useState, useEffect} from "react";
-import { useNavigate, Link, useParams} from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 import { baseURL } from "../../utils/constant";
 import "../Login/Login.css"
