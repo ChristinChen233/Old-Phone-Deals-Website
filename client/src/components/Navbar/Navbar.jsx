@@ -2,13 +2,16 @@ import "./Navbar.css";
 import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies, { Cookie } from "universal-cookie";
 
 const Navbar = () => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const navigate = useNavigate();
+  const cookies = new Cookies;
+  const currentUser = cookies.get("currentUser");
+  //console.log(currentUser)
 
   function logout() {
-    localStorage.clear();
+    cookies.remove("currentUser");
     navigate("/");
   }
 
