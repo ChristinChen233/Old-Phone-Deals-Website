@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
 import "../Profile.css";
 import "../../Checkout/Checkout.css";
 import AddPhonelisting from "./addPhonelisting";
+import Cookies from "universal-cookie";
 
 function ManageListings() {
   const [errorMsg, setErrorMsg] = useState("");
   const [phones, setPhones] = useState(null);
-  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
+  const cookies = new Cookies;
+  const currentUser = cookies.get("currentUser");
   const [addPhone, setAddPhone] = useState(false);
   const [addPhoneBtn, setAddPhoneBtn] = useState("Add new Phone");
 
@@ -74,7 +77,7 @@ function ManageListings() {
     }
   }
 
-  //add remove button 添加一个remove button
+  //add remove button
   async function remove(phone) {
     try {
       const id = phone.phone_id;
@@ -86,7 +89,7 @@ function ManageListings() {
         return;
       }
       if (res.data === "Delete success") {
-        //update phones use setPhones 用setPhones更新phones 检查逻辑：
+        //update phones
         const updatedPhones = phones.filter(
           (p) => p.phone_id !== phone.phone_id
         );
@@ -135,8 +138,18 @@ function ManageListings() {
             <div key={index} className="cart-list-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div>
-                <p className="checkout-heading">{item.title}</p>
-                <p>Brand: {item.brand}</p>
+              <Link to={`/phone/${item.phone_id}`} className="checkout-heading">
+                <p>{item.title}</p>
+                </Link>
+                <p>Brand: {item.brand} {" "}
+                 {/* <button className="btn btn-yellow">Change Brand</button> */}
+                 </p>
+                <p>Price: {item.price} {" "}
+                 {/* <button className="btn btn-yellow">Change Price</button> */}
+                 </p>
+                <p>Stock: {item.stock} {" "}
+                 {/* <button className="btn btn-yellow">Change Stock</button> */}
+                 </p>
                 <p>
                   Current Status:{" "}
                   {item.enable ? (
@@ -151,6 +164,7 @@ function ManageListings() {
                     {item.enable ? "Disable" : "Enable"}
                   </button>
                 </p>
+                <button className="btn btn-yellow"> Edit this Phone</button> {" "}
                 <button onClick={() => remove(item)} className="btn btn-red">
                   Remove this Phone
                 </button>

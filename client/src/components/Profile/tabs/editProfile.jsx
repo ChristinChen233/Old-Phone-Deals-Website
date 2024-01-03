@@ -3,11 +3,12 @@ import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
 import Popup from "reactjs-popup";
+import Cookies from "universal-cookie";
 
 function EditProfile() {
-  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
+  const cookies = new Cookies;
+  const currentUser = cookies.get("currentUser");
   const [errorMsg, setErrorMsg] = useState("");
-  const [hintMsg, setHintMsg] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -127,7 +128,6 @@ function EditProfile() {
         setErrorMsg("Please input your password to validate and then will be able to update your profile")
       }
       if (res.data.data === "good") {
-        setHintMsg("Successfully Update your information!");
         alert("Successfully Update your information!");
         currentUser.email = res.data.user.email;
         window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -158,9 +158,9 @@ function EditProfile() {
   };
 
   return (
+    <>
+    <h2>Edit Profile</h2>
     <div className="manage-user-container">
-      <h2>Edit Profile</h2>
-      {hintMsg && <p className="profile-suc">{hintMsg}</p>}
       <label className="profile-label">First Name: </label>
       <input
         type="text"
@@ -168,7 +168,7 @@ function EditProfile() {
         onChange={(e) => setFirstName(e.target.value)}
         className="profile-input"
       />
-      <br />
+     
       {errs.firstname && <span>{errs.firstname}</span>}
       <br></br>
       <label className="profile-label">Last Name: </label>
@@ -178,7 +178,7 @@ function EditProfile() {
         onChange={(e) => setLastName(e.target.value)}
         className="profile-input"
       />
-      <br />
+      
       {errs.lastname && <span className="profile-warn">{errs.lastname}</span>}
       <br></br>
       <label className="profile-label">Email: </label>
@@ -188,9 +188,9 @@ function EditProfile() {
         onChange={(e) => setEmail(e.target.value)}
         className="profile-input"
       />
-      <br></br>
+    
       {errs.email && <span>{errs.email}</span>}
-      <br></br>
+     
       <button
         className="btn btn-yellow"
         onClick={() => {
@@ -237,6 +237,7 @@ function EditProfile() {
       )}
       {errorMsg && <p className="profile-warn">{errorMsg}</p>}
     </div>
+    </>
   );
 }
 

@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import EmaiilVerify from "./components/Signup/EmailVerify";
 import ForgetPsw from "./components/Login/ForegetPsw";
 import ForgetPswReset from "./components/Login/ResetPsw";
+import PhoneDetail from "./components/main/PhoneDetail";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/forgetpsw" element={<ForgetPsw />}/>
         <Route path="/users/:id/verify/:token" element={<EmaiilVerify />}/>
         <Route path="/forgetpswUsers" element={<ForgetPswReset />}/>
+        <Route path="/phone/:phoneid" element={<PhoneDetail></PhoneDetail>}></Route>
       </Routes>
     </BrowserRouter>
   );

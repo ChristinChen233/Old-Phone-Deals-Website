@@ -4,11 +4,14 @@ import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
 import "../Profile.css"
 import "../../Checkout/Checkout.css";
+import Cookies from "universal-cookie";
+
 
 function ViewComments() {
   const [errorMsg, setErrorMsg] = useState("");
   const [comments, setComments] = useState(null);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const cookies = new Cookies;
+  const currentUser = cookies.get("currentUser");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +99,6 @@ function ViewComments() {
               <img
                 src={`./imgs/${item.brand}.jpeg`}
                 alt={item.title}
-                className="profile-img"
               ></img>
               <div className="profile-comments-right">
               <p className="checkout-heading">{item.title}</p>

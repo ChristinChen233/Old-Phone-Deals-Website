@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
+import Cookies from "universal-cookie";
 
 const AddPhoneListing = () => {
   const [title, setTitle] = useState("");
@@ -9,7 +10,9 @@ const AddPhoneListing = () => {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
 
-  const currUser = JSON.parse(localStorage.getItem("currentUser"));
+  const cookies = new Cookies;
+  const currUser = cookies.get("currentUser");
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -12,6 +12,10 @@
   background-color: #84bbf1;
 }
 
+.left-par {
+  font-size: large;
+}
+
 .input-phone {
   padding: 1rem;
   border: none;
@@ -38,9 +42,13 @@
   background-color: #c8e0f8;
 }
 
-.phone-details > img {
-  width: 25rem;
-  object-fit: cover;
+.phone-link {
+  color: black;
+  font-size: 100%;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
 }
 
 .btn-container {
@@ -48,27 +56,30 @@
   gap: 2rem;
 }
 
-.modal-container {
-  position: fixed;
-  width: 80%;
-  height: 80vh;
-  top: 58%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 5px 30px #888;
-  background-color: #c8e0f8;
-  border-radius: 5px;
-  padding: 4rem;
-  overflow-y: scroll;
+
+.phone-details > img {
+  width: 25rem;
+  object-fit: cover;
 }
 
-.modal-container img {
-  width: 40%;
-  border-radius: 5px;
+.phone-detail-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.phone {
+  margin: 8em 5em 5em 5em;
+  width: auto;
+}
+
+.phone-detail-container > img {
+  flex: 0.3;
+  width: auto;
 }
 
 .details {
-  width: 50%;
+  flex:0.7;
+  margin: 2% 5% 0 5%;
 }
 
 .x-btn {
@@ -126,6 +137,8 @@
 
 .phone-title {
   margin-bottom: 2rem;
+  font-size: larger;
+  color: #2a4764;
 }
 
 .add-comment-container {
@@ -133,6 +146,11 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  font-size: large;
+}
+
+.add-comment-container > label {
+  font-weight: bold;
 }
 
 .comment-textarea {
@@ -141,6 +159,7 @@
   border: 2px solid #ccc;
   border-radius: 5px;
   resize: none;
+  height: 40px;
 }
 
 .comment-number {

@@ -32,6 +32,10 @@
   color: #18687c;
 }
 
+.checkout-heading:hover {
+  text-decoration: underline;
+}
+
 .cart-list-container {
   display: flex;
   gap: 4rem;

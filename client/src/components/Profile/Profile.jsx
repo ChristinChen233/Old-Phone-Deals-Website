@@ -4,10 +4,12 @@ import ChangePassword from "./tabs/changePassword";
 import ManageListings from "./tabs/manageListings";
 import ViewComments from "./tabs/viewComments";
 import "./Profile.css";
+import Cookies from "universal-cookie";
 
 const Profile = () => {
   const [mode, setMode] = useState("");
-  const user = JSON.parse(window.localStorage.getItem("currentUser")).email;
+  const cookies = new Cookies;
+  const user = cookies.get("currentUser")?.email;
 
   function toEditProfile() {
     setMode("edit-profile");
@@ -23,12 +25,17 @@ const Profile = () => {
     setMode("comments");
   }
 
+  const Greetings = () => {
+    return (<p className="profile-greeting">
+    Hello, {user}, please click the navigation bar below
+  </p>)
+  }
+
   const Bars = () => {
     return (
-      <div>
-        <p className="profile-greeting">
-          Hello, {user}, please click the navigation bar below
-        </p>
+      <div> 
+        <Greetings></Greetings>
+        <div className= "profile-nav-container">
         <button onClick={toEditProfile} className="profile-nav-btn">
           Edit Profile
         </button>
@@ -41,6 +48,7 @@ const Profile = () => {
         <button onClick={toComments} className="profile-nav-btn">
           View comments
         </button>
+        </div>
       </div>
     )
   }
@@ -86,7 +94,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <Bars />
-      <p className="profile-greeting">Hope you have a nice day!</p>
+      <EditProfile />
     </div>
   );
 };

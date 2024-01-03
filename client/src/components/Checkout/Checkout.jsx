@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../utils/constant";
 import "../../index.css";
 import "./Checkout.css";
+import Cookies from "universal-cookie";
 
 
 const Checkout = () => {
@@ -12,7 +13,8 @@ const Checkout = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [buy, setBuy] = useState(false);
   const navigate = useNavigate();
-  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
+  const cookies = new Cookies;
+  const currentUser = cookies.get("currentUser");
 
   useEffect(() => {
     const fetchCartData = async () => {
@@ -142,7 +144,6 @@ const Checkout = () => {
       }
     }
 
-    //以下注释待删
     // await axios, post phone_id and v(v is new quantity of phone) to backend
     // check stock for this item and alert user if no enough stock
     // if successfully update, response with {msg: ok, totalPrice: calculated new total price}
@@ -150,7 +151,6 @@ const Checkout = () => {
 
   async function remove(phone) {
     try {
-      //检查以下代码逻辑
       let new_totalPrice = totalPrice - phone.num * phone.price;
       if (new_totalPrice < 0) {
         new_totalPrice = 0;
@@ -210,7 +210,9 @@ const Checkout = () => {
             <div key={index} className="cart-list-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title} />
               <div>
-                <p className="checkout-heading">{item.title}</p>
+                <Link to={`/phone/${item.phone_id}`} className="checkout-heading">
+                <p>{item.title}</p>
+                </Link>
                 <p>
                   Quantity:{" "}
                   <input
@@ -224,7 +226,9 @@ const Checkout = () => {
                 <p>
                   Price of Each Item: <strong>$ {item.price}</strong>
                 </p>
-                <p>Brand: {item.brand}</p>
+                <p>
+                  Total Price: <strong>$ {item.price * item.num}</strong>
+                </p>
                 <button
                   id="delete"
                   className="btn btn-red"
