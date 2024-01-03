@@ -1,72 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import Cookies from 'universal-cookie';
 import { useNavigate, Link } from "react-router-dom";
 import { baseURL } from "../../utils/constant";
 import "../../index.css";
 import "./Login.css";
 
-//https://medium.com/boca-code/how-to-encrypt-password-in-your-react-app-before-you-send-it-to-the-api-6e10a06f0a8e
 
 function Login() {
   const history = useNavigate(); //navigate between different pages
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const [errMsg, setErrMsg] = useState("");
-  const [indicator, setIndicator] = useState(false);
   const [msg, setMsg] = useState("");
   const [errs, setErrs] = useState({});
+  const cookies = new Cookies();
 
-  function validation(values) {
-    let err = {};
-    const email_pattern =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    if (values.email === "") {
-      err.email = "Please input your email";
-      setIndicator(true);
-    } else if (values.email.length >= 50) {
-      err.email = "Your email is too long";
-      setIndicator(true);
-    } else if (!email_pattern.test(values.email)) {
-      err.email = "Your email pattern is incorrect";
-      setIndicator(true);
-    } else {
-      err.email = "";
-    }
-
-    if (values.password === "") {
-      err.password = "Please input your password";
-      setIndicator(true);
-    } else {
-      err.password = "";
-    }
-    console.log(err);
-    return err;
-  }
 
  async function submit(e) {
-        setErrMsg("")
-        setErrs({})
-        setMsg('')
-        setIndicator(false)
         e.preventDefault();
         try{
-            setErrs(validation({email:email, password:password}))
-            if (indicator) {
-                console.log("invalid input")
-                console.log(errs);
-                return
-            }
             await axios.post(`${baseURL}/login`, {
-                email, password, indicator
+                email, password
             })
             .then(res => {
                 // console.log(req)
                 if(res.data.data === 'exist') {
-                    window.localStorage.setItem("currentUser", JSON.stringify({email: email, token: res.data.token, userId: res.data.userId}));
-                    history("/")
-                    setMsg("Logged in")
+                  cookies.set("currentUser", 
+                  {email: email, token: res.data.token, userId: res.data.userId}, 
+                  {maxAge: 21600}); //6 hours
+                  //window.localStorage.setItem("currentUser", JSON.stringify({email: email, token: res.data.token, userId: res.data.userId}));
+                  history("/")
+                  setMsg("Logged in")
                 }
                 if(res.data === 'noexist') {
                     setErrs({email:"You input wrong email"});
@@ -81,7 +47,6 @@ function Login() {
                     setMsg("Your Email hasn't been verified! \nA verification link has been sent to your email.");
                 }
                 if (res.data === "resend") {
-                    setIndicator('resend');
                 }
         }).catch(e=>{
             setErrMsg("Wrong details")
@@ -92,9 +57,11 @@ function Login() {
       }
 
   return (
-    <div className="login-container">
+    <form
+        onSubmit={submit}
+        className="login-container"
+      >
       <h1>Login</h1>
-      <form action="POST">
         {errMsg && <span className="warn">{errMsg}</span>}
         <div>
           <label htmlFor="email" className="login-label">
@@ -134,6 +101,14 @@ function Login() {
         </div>
 
         {msg && <p className="suc">{msg}</p>}
+        
+        <button type="submit" className="btn btn-green" id="submit">
+          Log In
+        </button>
+        {/* <button className="login-btn" id="test" onClick={test}>
+          test
+        </button> */}
+        <br></br>
         <strong>
           No account?{" "}
           <Link to="/signup" className="login-link">
@@ -141,13 +116,6 @@ function Login() {
           </Link>
           !
         </strong>
-        <br></br>
-        <button type="submit" className="login-btn" id="submit" onClick={submit}>
-          Log In
-        </button>
-        {/* <button className="login-btn" id="test" onClick={test}>
-          test
-        </button> */}
         <br></br>
 
         <strong>
@@ -157,7 +125,6 @@ function Login() {
           ?
         </strong>
       </form>
-    </div>
   );
 }
 

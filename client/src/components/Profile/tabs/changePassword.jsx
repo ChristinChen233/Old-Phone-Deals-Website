@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
+import Cookies from "universal-cookie";
 
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  let email = JSON.parse(localStorage.getItem("currentUser")).email;
+  const cookies = new Cookies;
+  const email = cookies.get("currentUser")?.email;
   const [errorMsg, setErrorMsg] = useState("");
   const [errs, setErrs] = useState({});
   const [indicator, setIndicator] = useState(false);

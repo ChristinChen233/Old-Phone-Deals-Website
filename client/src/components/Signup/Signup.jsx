@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "../../index.css";
 import "../Login/Login.css";
+import "./Signup.css";
 import { baseURL } from "../../utils/constant";
 
 function Signup() {
@@ -143,7 +144,7 @@ function Signup() {
   }
 
   return (
-    <div className="login-container signup-container">
+    <div className="signup-container">
       <h1>Signup</h1>
       <form action="POST">
         {errMsg && <span className="warn">{errMsg}</span>}
@@ -152,7 +153,7 @@ function Signup() {
             Email:
           </label>
           <input
-            className="login-input"
+            className="signup-input"
             type="text"
             placeholder="put_your_email_here@gmail.com"
             id="email"
@@ -170,7 +171,7 @@ function Signup() {
             Password:
           </label>
           <input
-            className="login-input"
+            className="signup-input"
             type="password"
             placeholder=""
             id="password"
@@ -187,7 +188,7 @@ function Signup() {
             Repeat Password:
           </label>
           <input
-            className="login-input"
+            className="signup-input"
             type="password"
             placeholder="repeat password"
             id="repeatPassword"
@@ -204,7 +205,7 @@ function Signup() {
             Firstname:
           </label>
           <input
-            className="login-input"
+            className="signup-input"
             type="text"
             placeholder="your first name"
             id="firstname"
@@ -222,7 +223,7 @@ function Signup() {
             Lastname:
           </label>
           <input
-            className="login-input"
+            className="signup-input"
             type="text"
             placeholder="your last name"
             id="lastname"
@@ -235,19 +236,18 @@ function Signup() {
           {errs.lastname && <span className="warn">{errs.lastname}</span>}
         </div>
 
-        <br></br>
         {msg && <p className="suc">{msg}</p>}
 
         <button
           type="submit"
-          className="login-btn"
+          className="btn btn-green"
           id="submit"
           onClick={submit}
         >
           Register
         </button>
         <br></br>
-        <Link to="/login" className="login-link">
+        <Link to="/login" className="signup-link">
           Login Page
         </Link>
       </form>

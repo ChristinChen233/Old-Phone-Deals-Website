@@ -17,7 +17,6 @@ body {
   font: 1.6rem lato;
   color: #555;
   padding: auto;
-
 }
 
 /* ---------------------- */
@@ -35,6 +34,10 @@ body {
   margin: 12rem auto;
 }
 
+Link {
+  color: black;
+}
+
 .btn {
   text-transform: capitalize;
   font-size: 1.5rem;
@@ -44,6 +47,7 @@ body {
   border-radius: 5px;
   background-color: #fff;
   cursor: pointer;
+  color: black;
 }
 
 .btn-margin-bottom {

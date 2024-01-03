@@ -117,7 +117,7 @@ function ResetPsw() {
                 {msg && <span className='suc'>{msg}</span>}
                 </div>
 
-            <button type = 'submit' className='login-btn' id='send-reset'>reset password</button>
+            <button type = 'submit' className="btn btn-green" id='send-reset'>reset password</button>
         </form>) : (
             <h1>404 Not Found. The link has expired, Go back to <Link to="/forgetpsw" className='login-link'>Forget Password</Link> page and resend the link</h1>
         )}
