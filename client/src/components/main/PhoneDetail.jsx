@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "universal-cookie";
 
 const PhoneDetail = () => {
-  const cookies = new Cookies;
+  const cookies = new Cookies();
     const currentUser = cookies.get("currentUser");
     const param = useParams();
     const [phone, setPhone] = useState(null);
