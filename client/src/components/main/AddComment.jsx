@@ -3,9 +3,11 @@ import axios from "axios";
 import { baseURL } from "../../utils/constant";
 import { Link } from "react-router-dom";
 import "./PhoneList.css";
+import Cookies from "universal-cookie";
 
 const AddCommentForm = (props) => {
-  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
+  const cookies = new Cookies();
+  const currentUser = cookies.get("currentUser");
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
   const [error, setError] = useState(null);
@@ -42,7 +44,6 @@ const AddCommentForm = (props) => {
       >
         {error && <p className="error">{error}</p>}
           <label>Comment:</label>
-          <br />
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -55,11 +56,10 @@ const AddCommentForm = (props) => {
           onChange={(e) => setRating(e.target.value)}
           min="1"
           max="5"
-          placeholder="Rating 1 - 5"
+          placeholder="Rate 1 - 5"
           className="comment-number"
           required
         />
-        <br />
         <button type="submit" className="btn btn-blue">
           Submit
         </button>
@@ -67,10 +67,10 @@ const AddCommentForm = (props) => {
     );
   } else {
     return (
-      <>
+      <div className="add-comment-container">
       <strong>Please <Link to="/login" className="login-link">
           Login
-        </Link> to add comment</strong></>
+        </Link> to add comment</strong></div>
     )
   }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { baseURL } from "../../utils/constant";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Top5SoldOut.css";
 
@@ -54,7 +55,7 @@ function PhoneList() {
                 <img src={phone.image} alt={phone.title} />
               </li>
               <li>
-                <h3>{phone.title}</h3>
+                <Link className="phone-link" to={`/phone/${phone._id}`}><b>{phone.title}</b></Link>
               </li>
               <li>$ {phone.price}</li>
               <li>Stock: {phone.stock}</li>
@@ -72,7 +73,7 @@ function PhoneList() {
                 <img src={phone.image} alt={phone.title} />
               </li>
               <li>
-                <h3>{phone.title}</h3>
+              <Link className="phone-link" to={`/phone/${phone._id}`}><b>{phone.title}</b></Link>
               </li>
               <li>$ {phone.price}</li>
               <li>Stock: {phone.stock}</li>

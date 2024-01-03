@@ -8,7 +8,6 @@ import './Login.css'
 //disabled={disabled} mybutton.Content = "Save";
 
 function ForgetPsw() {
-    const history = useNavigate(); //navigate between different pages
 
     const [email, setEmail] = useState('');
     const [errs, setErrs] = useState('');
@@ -75,8 +74,6 @@ function ForgetPsw() {
         <h1>Forget Password</h1>
         <form action='POST'>
         <p>Please input your email and click the button below, we will send you a link for resetting your password!</p>
-        <br></br>
-            <div>
             <label htmlFor='email' className='login-label'>Email:</label><br></br>
             <input className='login-input'
             type="text"  
@@ -87,11 +84,10 @@ function ForgetPsw() {
             required
             /><br></br>
             {errs.email && <span className='warn'>{errs.email}</span>}
-            </div>
 
             {msg && <p className='suc'>{msg}</p>}
 
-            <button type = 'submit' className='login-btn' id='send-reset' onClick={sendLink}>Send reset password Link</button>
+            <button type = 'submit' className='btn btn-green' id='send-reset' onClick={sendLink}>Send reset password Link</button>
             <br></br>
             <strong>No account? <Link to= '/signup' className='login-link'>Register</Link>!</strong> <br></br>
             <strong><Link to= '/login' className='login-link'>log in</Link></strong>
