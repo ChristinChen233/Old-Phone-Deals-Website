@@ -6,7 +6,7 @@ import "./PhoneList.css";
 import Cookies from "universal-cookie";
 
 const AddCommentForm = (props) => {
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
