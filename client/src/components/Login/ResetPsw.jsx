@@ -11,7 +11,7 @@ function ResetPsw() {
   const [errs, setErrs] = useState({});
   const [msg, setMsg] = useState("");
   const [validUrl, setValidUrl] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [indicator, setIndicator] = useState(false);
 
   const id = searchParams.get("id");

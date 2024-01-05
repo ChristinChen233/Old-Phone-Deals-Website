@@ -35,7 +35,7 @@ const Checkout = () => {
     if (currentUser != null) {
       fetchCartData();
     }
-  }, []);
+  }, [currentUser]);
 
   async function pay() {
     try {

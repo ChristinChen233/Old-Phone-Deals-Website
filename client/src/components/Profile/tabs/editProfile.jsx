@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
-import Popup from "reactjs-popup";
+// import Popup from "reactjs-popup";
 import Cookies from "universal-cookie";
 
 function EditProfile() {
@@ -39,7 +39,7 @@ function EditProfile() {
     if (currentUser != null) {
       fetchUserData();
     }
-  }, []);
+  }, [currentUser]);
 
   function validation() {
     let err = {};
@@ -153,11 +153,6 @@ function EditProfile() {
       console.log(error);
     }
   }
-
-  const offset = {
-    left: 10,
-    top: 50,
-  };
 
   return (
     <>

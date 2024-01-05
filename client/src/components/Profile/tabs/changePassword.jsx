@@ -56,7 +56,6 @@ function ChangePassword() {
         console.log("err input");
         return;
       }
-      email = JSON.parse(localStorage.getItem("currentUser")).email;
       const response = await axios.post(`${baseURL}/profile/change-password`, {
         email,
         currentPassword,
