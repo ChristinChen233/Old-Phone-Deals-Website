@@ -110,14 +110,16 @@ const PhoneDetail = () => {
               <p className="left-par">
                 Average Rating:{" "}
                 <strong>
-                  {Math.round(
-                    (phone.reviews.reduce(
-                      (sum, curr) => sum + Number(curr.rating),
-                      0
-                    ) /
-                      phone.reviews.length) *
-                      10
-                  ) / 10}{" "}
+                  {phone.reviews > 0
+                    ? Math.round(
+                        (phone.reviews.reduce(
+                          (sum, curr) => sum + Number(curr.rating),
+                          0
+                        ) /
+                          phone.reviews.length) *
+                          10
+                      ) / 10
+                    : "No rating yet"}{" "}
                 </strong>
               </p>
 
@@ -134,37 +136,46 @@ const PhoneDetail = () => {
             <h2>Reviews</h2>
             <AddCommentForm phone_id={phone._id} />
             <br></br>
-            <table className="comment-table">
-              <thead>
-                <tr>
-                  <th>Comments</th>
-                  <th>Rating</th>
-                  <th>Reviewer</th>
-                </tr>
-              </thead>
-              <tbody>
-                {phone.reviews.slice(0, visibleReviews).map((review) => {
-                  return <CommentCard review={review}></CommentCard>;
-                })}
-              </tbody>
-            </table>
-            {visibleReviews < phone.reviews.length && (
-              <button
-                onClick={() => {
-                  handleShowMore();
-                }}
-                className="btn btn-green">
-                Show more Comments
-              </button>
-            )}
-            {visibleReviews >= phone.reviews.length && (
-              <button
-                className="btn btn-red"
-                onClick={() => {
-                  handleShowLess();
-                }}>
-                Show Less Comments
-              </button>
+            {phone.reviews.length > 0 ? (
+              <div>
+                <table className="comment-table">
+                  <thead>
+                    <tr>
+                      <th>Comments</th>
+                      <th>Rating</th>
+                      <th>Reviewer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {phone.reviews.slice(0, visibleReviews).map((review) => {
+                      return <CommentCard review={review}></CommentCard>;
+                    })}
+                  </tbody>
+                </table>
+                {visibleReviews < phone.reviews.length && (
+                  <button
+                    onClick={() => {
+                      handleShowMore();
+                    }}
+                    className="btn btn-green">
+                    Show more Comments
+                  </button>
+                )}
+                {visibleReviews >= phone.reviews.length &&
+                  phone.reviews.length > 5 && (
+                    <button
+                      className="btn btn-red"
+                      onClick={() => {
+                        handleShowLess();
+                      }}>
+                      Show Less Comments
+                    </button>
+                  )}
+              </div>
+            ) : (
+              <strong className="add-comment-container">
+                No review for this phone yet
+              </strong>
             )}
           </div>
         </div>
