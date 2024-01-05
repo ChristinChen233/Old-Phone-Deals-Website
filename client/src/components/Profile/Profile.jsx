@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 
 const Profile = () => {
   const [mode, setMode] = useState("");
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const user = cookies.get("currentUser")?.email;
 
   function toEditProfile() {
@@ -26,32 +26,34 @@ const Profile = () => {
   }
 
   const Greetings = () => {
-    return (<p className="profile-greeting">
-    Hello, {user}, please click the navigation bar below
-  </p>)
-  }
+    return (
+      <p className="profile-greeting">
+        Hello, {user}, please click the navigation bar below
+      </p>
+    );
+  };
 
   const Bars = () => {
     return (
-      <div> 
+      <div>
         <Greetings></Greetings>
-        <div className= "profile-nav-container">
-        <button onClick={toEditProfile} className="profile-nav-btn">
-          Edit Profile
-        </button>
-        <button onClick={toChangePsw} className="profile-nav-btn">
-          Change Password
-        </button>
-        <button onClick={toManageList} className="profile-nav-btn">
-          Manage Phone listings
-        </button>
-        <button onClick={toComments} className="profile-nav-btn">
-          View comments
-        </button>
+        <div className="profile-nav-container">
+          <button onClick={toEditProfile} className="profile-nav-btn">
+            Edit Profile
+          </button>
+          <button onClick={toChangePsw} className="profile-nav-btn">
+            Change Password
+          </button>
+          <button onClick={toManageList} className="profile-nav-btn">
+            Manage Phone listings
+          </button>
+          <button onClick={toComments} className="profile-nav-btn">
+            View comments
+          </button>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   if (mode === "edit-profile") {
     return (

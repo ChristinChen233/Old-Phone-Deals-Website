@@ -1,15 +1,15 @@
 .signup-container {
-    width: 50%;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: solid #033E78;
-    border-radius: 5px;
-    padding: 3rem;
-    font-size: medium;
-    line-height: 120%;
-  }
+  width: 50%;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid #033e78;
+  border-radius: 5px;
+  padding: 3rem;
+  font-size: medium;
+  line-height: 120%;
+}
 
 .signup-container > h1 {
   margin-bottom: 2%;

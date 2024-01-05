@@ -242,8 +242,7 @@ function Signup() {
           type="submit"
           className="btn btn-green"
           id="submit"
-          onClick={submit}
-        >
+          onClick={submit}>
           Register
         </button>
         <br></br>

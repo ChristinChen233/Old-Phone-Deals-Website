@@ -11,7 +11,7 @@ import Cookies from "universal-cookie";
 function ManageListings() {
   const [errorMsg, setErrorMsg] = useState("");
   const [phones, setPhones] = useState(null);
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
   const [addPhone, setAddPhone] = useState(false);
   const [addPhoneBtn, setAddPhoneBtn] = useState("Add new Phone");
@@ -118,8 +118,7 @@ function ManageListings() {
       <div className="add-list-box">
         <button
           onClick={triggerAddPhone}
-          className="btn btn-yellow btn-margin-bottom"
-        >
+          className="btn btn-yellow btn-margin-bottom">
           {addPhoneBtn}
         </button>
         {addPhone ? (
@@ -138,33 +137,41 @@ function ManageListings() {
             <div key={index} className="cart-list-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div>
-              <Link to={`/phone/${item.phone_id}`} className="checkout-heading">
-                <p>{item.title}</p>
+                <Link
+                  to={`/phone/${item.phone_id}`}
+                  className="checkout-heading">
+                  <p>{item.title}</p>
                 </Link>
-                <p>Brand: {item.brand} {" "}
-                 {/* <button className="btn btn-yellow">Change Brand</button> */}
-                 </p>
-                <p>Price: {item.price} {" "}
-                 {/* <button className="btn btn-yellow">Change Price</button> */}
-                 </p>
-                <p>Stock: {item.stock} {" "}
-                 {/* <button className="btn btn-yellow">Change Stock</button> */}
-                 </p>
+                <p>
+                  Brand: {item.brand}{" "}
+                  {/* <button className="btn btn-yellow">Change Brand</button> */}
+                </p>
+                <p>
+                  Price: {item.price}{" "}
+                  {/* <button className="btn btn-yellow">Change Price</button> */}
+                </p>
+                <p>
+                  Stock: {item.stock}{" "}
+                  {/* <button className="btn btn-yellow">Change Stock</button> */}
+                </p>
                 <p>
                   Current Status:{" "}
                   {item.enable ? (
-                    <strong className="profile-content">Display to Public </strong>
+                    <strong className="profile-content">
+                      Display to Public{" "}
+                    </strong>
                   ) : (
-                    <strong className="profile-content">Hide from Public </strong>
+                    <strong className="profile-content">
+                      Hide from Public{" "}
+                    </strong>
                   )}{" "}
                   <button
                     onClick={() => setEnable(item)}
-                    className="btn btn-green"
-                  >
+                    className="btn btn-green">
                     {item.enable ? "Disable" : "Enable"}
                   </button>
                 </p>
-                <button className="btn btn-yellow"> Edit this Phone</button> {" "}
+                <button className="btn btn-yellow"> Edit this Phone</button>{" "}
                 <button onClick={() => remove(item)} className="btn btn-red">
                   Remove this Phone
                 </button>

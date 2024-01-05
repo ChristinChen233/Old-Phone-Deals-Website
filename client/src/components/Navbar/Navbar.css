@@ -29,7 +29,8 @@
   transition: 0.3s linear;
 }
 
-.nav-items:hover, .nav-btn:hover {
+.nav-items:hover,
+.nav-btn:hover {
   color: yellow;
   border-bottom-color: yellow;
 }

@@ -24,7 +24,7 @@ const AddCommentForm = (props) => {
       });
 
       console.log(response.data);
-      alert("You have uploaded your comments! Please refresh the page")
+      alert("You have uploaded your comments! Please refresh the page");
       // Reset form fields
       setRating("");
       setComment("");
@@ -36,20 +36,17 @@ const AddCommentForm = (props) => {
     }
   };
 
-  if(currentUser) {
+  if (currentUser) {
     return (
-      <form
-        onSubmit={handleAddComment}
-        className="add-comment-container"
-      >
+      <form onSubmit={handleAddComment} className="add-comment-container">
         {error && <p className="error">{error}</p>}
-          <label>Comment:</label>
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            className="comment-textarea"
-            required
-          />
+        <label>Comment:</label>
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          className="comment-textarea"
+          required
+        />
         <input
           type="number"
           value={rating}
@@ -68,12 +65,16 @@ const AddCommentForm = (props) => {
   } else {
     return (
       <div className="add-comment-container">
-      <strong>Please <Link to="/login" className="login-link">
-          Login
-        </Link> to add comment</strong></div>
-    )
+        <strong>
+          Please{" "}
+          <Link to="/login" className="login-link">
+            Login
+          </Link>{" "}
+          to add comment
+        </strong>
+      </div>
+    );
   }
-
 };
 
 export default AddCommentForm;

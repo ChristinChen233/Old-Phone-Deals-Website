@@ -43,7 +43,7 @@ Link {
   font-size: 1.5rem;
   padding: 1rem;
   border: none;
-  border: solid #033E78 1px;
+  border: solid #033e78 1px;
   border-radius: 5px;
   background-color: #fff;
   cursor: pointer;
@@ -64,7 +64,7 @@ Link {
 }
 
 .btn-blue:hover {
-  background-color: #033E78;
+  background-color: #033e78;
 }
 
 .btn-red:hover {
@@ -93,7 +93,7 @@ a {
 }
 
 h2 {
-  color: #033E78;
+  color: #033e78;
   text-align: center;
   width: 100%;
   font-size: 3rem;
