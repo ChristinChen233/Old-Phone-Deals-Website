@@ -10,9 +10,8 @@ const AddPhoneListing = () => {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
 
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currUser = cookies.get("currentUser");
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,8 +74,7 @@ const AddPhoneListing = () => {
             name="brand"
             value={brand}
             onChange={(event) => setBrand(event.target.value)}
-            className="profile-input"
-          >
+            className="profile-input">
             <option value="">Select a brand</option>
             <option value="Apple">Apple</option>
             <option value="BlackBerry">BlackBerry</option>

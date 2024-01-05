@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const email = cookies.get("currentUser")?.email;
   const [errorMsg, setErrorMsg] = useState("");
   const [errs, setErrs] = useState({});
@@ -67,15 +67,17 @@ function ChangePassword() {
         console.log("hi");
         setErrorMsg("User not found, you may need to login again");
       }
-      if(response.data === 'invalid psw') {
-        setErrorMsg("Your new password should be in length from 8 to 15, and contains at least 1 number, 1 lowercase letter and 1 uppercase letter")
+      if (response.data === "invalid psw") {
+        setErrorMsg(
+          "Your new password should be in length from 8 to 15, and contains at least 1 number, 1 lowercase letter and 1 uppercase letter"
+        );
       }
 
       if (response.data === "wrong psw") {
         setErrorMsg("Current password invalid");
       }
 
-      if (response.data.data === 'good') {
+      if (response.data.data === "good") {
         setErrorMsg("Password changed successfully!");
       }
     } catch (error) {
@@ -114,7 +116,9 @@ function ChangePassword() {
           required
         />
         <br></br>
-        {errs.newPassword && <span className="profile-warn">{errs.newPassword}</span>}
+        {errs.newPassword && (
+          <span className="profile-warn">{errs.newPassword}</span>
+        )}
       </div>
       <br></br>
       {errorMsg && <p className="profile-suc">{errorMsg}</p>}
