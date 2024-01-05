@@ -6,14 +6,13 @@ import "../../index.css";
 import "./Checkout.css";
 import Cookies from "universal-cookie";
 
-
 const Checkout = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [phones, setPhones] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [buy, setBuy] = useState(false);
   const navigate = useNavigate();
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
 
   useEffect(() => {
@@ -210,8 +209,10 @@ const Checkout = () => {
             <div key={index} className="cart-list-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title} />
               <div>
-                <Link to={`/phone/${item.phone_id}`} className="checkout-heading">
-                <p>{item.title}</p>
+                <Link
+                  to={`/phone/${item.phone_id}`}
+                  className="checkout-heading">
+                  <p>{item.title}</p>
                 </Link>
                 <p>
                   Quantity:{" "}
@@ -220,8 +221,7 @@ const Checkout = () => {
                     type="number"
                     min="0"
                     onChange={(e) => modify(e.target.value, item)}
-                    value={item.num}
-                  ></input>
+                    value={item.num}></input>
                 </p>
                 <p>
                   Price of Each Item: <strong>$ {item.price}</strong>
@@ -232,8 +232,7 @@ const Checkout = () => {
                 <button
                   id="delete"
                   className="btn btn-red"
-                  onClick={() => remove(item)}
-                >
+                  onClick={() => remove(item)}>
                   delete
                 </button>
               </div>

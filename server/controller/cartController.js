@@ -1,7 +1,5 @@
-const { default: mongoose } = require("mongoose");
 const Cart = require("../model/CartModel");
 const PhoneListing = require("../model/PhoneListModel");
-const UserList = require("../model/userlist");
 
 const getCartDataByUserId = async (req, res) => {
   try {
@@ -46,23 +44,27 @@ const updateAfterCheckout = async (req, res) => {
     const updatePromises = [];
 
     //for loop to check whether all items in cart is in stock
-    for(const cartItem of cartItems) {
+    for (const cartItem of cartItems) {
       const phoneId = cartItem.phone_id;
       const num = cartItem.num;
-
 
       const phoneListing = await PhoneListing.findById(phoneId);
       if (!phoneListing) {
         return res.json("no such phone");
       }
       //If the phone has been disabled, then user cannot check out this item.
-      if(!phoneListing.enable) {
-        res.json({data: "phone disabled", msg: `${phoneListing.title} has been disabled, please remove this item.`});
+      if (!phoneListing.enable) {
+        res.json({
+          data: "phone disabled",
+          msg: `${phoneListing.title} has been disabled, please remove this item.`,
+        });
         return;
       }
       //check stock
-      if(phoneListing.stock < num) {
-        return res.status(401).json(
+      if (phoneListing.stock < num) {
+        return res
+          .status(401)
+          .json(
             `${phoneListing.title} doesn't have enough stock. The available stock quantity is: ${phoneListing.stock}`
           );
       }
@@ -92,7 +94,7 @@ const updateAfterCheckout = async (req, res) => {
 //post request
 const updateNumWhenUserChangeItemNum = async (req, res) => {
   let { currentUserId, phone_id, num } = req.body;
- // console.log(req.body);
+  // console.log(req.body);
   num = parseInt(num);
 
   if (currentUserId === null) {
@@ -109,8 +111,10 @@ const updateNumWhenUserChangeItemNum = async (req, res) => {
       return res.json("No cart");
     }
 
-    const cartItem = cart.cartItems.find((item) => item.phone_id.toString() === phone_id.toString());
-   // console.log(cartItem);
+    const cartItem = cart.cartItems.find(
+      (item) => item.phone_id.toString() === phone_id.toString()
+    );
+    // console.log(cartItem);
     if (!cartItem) {
       return res.json("No item");
     }
@@ -149,9 +153,12 @@ const AddCartItem = async (req, res) => {
   // console.log(userId, phone_id, title, num, price, brand);
 
   //check stock before add item to cart
-  const phone = await PhoneListing.findOne({_id: phone_id});
-  if(phone.stock < num) {
-    res.json({data: "Bad stock", msg: "insufficient stock, only " + phone.stock +" left." });
+  const phone = await PhoneListing.findOne({ _id: phone_id });
+  if (phone.stock < num) {
+    res.json({
+      data: "Bad stock",
+      msg: "insufficient stock, only " + phone.stock + " left.",
+    });
     return;
   }
   if (!cart) {
@@ -166,10 +173,18 @@ const AddCartItem = async (req, res) => {
     // Add item to existing cart
     let ItemExistsInCart = false;
 
-    for(const cartItem of cart.cartItems) {
-      if(cartItem.phone_id.toString() === phone_id.toString()) {
-        if(cartItem.num + num > phone.stock) {
-          res.json({data: "Bad stock", msg: "Insufficient stock, there is/are " + cartItem.num + " already in the cart, only " + phone.stock +" in stock." });
+    for (const cartItem of cart.cartItems) {
+      if (cartItem.phone_id.toString() === phone_id.toString()) {
+        if (cartItem.num + num > phone.stock) {
+          res.json({
+            data: "Bad stock",
+            msg:
+              "Insufficient stock, there is/are " +
+              cartItem.num +
+              " already in the cart, only " +
+              phone.stock +
+              " in stock.",
+          });
           return;
         }
         cartItem.num += num;
@@ -179,7 +194,7 @@ const AddCartItem = async (req, res) => {
       }
     }
 
-    if(!ItemExistsInCart) {
+    if (!ItemExistsInCart) {
       cart.cartItems.push({ phone_id, title, num, price, brand });
       await cart.save();
     }

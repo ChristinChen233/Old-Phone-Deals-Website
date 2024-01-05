@@ -8,7 +8,7 @@ const Wrapper = styled.section`
   ul {
     list-style: none;
   }
-  
+
   a {
     text-decoration: none;
     color: #fff;

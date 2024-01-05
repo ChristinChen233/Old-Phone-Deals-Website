@@ -5,7 +5,7 @@ module.exports.getPhoneLists = async (req, res) => {
   try {
     const phones = await PhoneListModel.find({});
     const { phoneId } = req.params;
-   // console.log(phones)
+    // console.log(phones)
     const updatedPhones = phones.map((phone) => {
       phone.image = "./imgs/" + phone.brand + ".jpeg";
       // phone.phone_id = phone._id;
@@ -36,7 +36,6 @@ module.exports.getPhoneLists = async (req, res) => {
     res.status(500).send({ status: "error", message: "Internal server error" });
   }
 };
-
 
 module.exports.getPhoneListsById = async (req, res) => {
   try {
@@ -71,12 +70,14 @@ module.exports.addComment = async (req, res) => {
     const user = await UserListModel.findById(currentUserId);
 
     if (!phone || !user) {
-      return res.status(404).send({ status: "error", message: "Phone or user not found" });
+      return res
+        .status(404)
+        .send({ status: "error", message: "Phone or user not found" });
     }
-    const reviewer = currentUserId
+    const reviewer = currentUserId;
     const reviewerName = user.firstname + " " + user.lastname;
 
-    phone.reviews.push({rating, comment, reviewer, reviewerName});
+    phone.reviews.push({ rating, comment, reviewer, reviewerName });
     const updatedPhone = await phone.save();
     res.send({ status: "ok", data: updatedPhone });
   } catch (error) {

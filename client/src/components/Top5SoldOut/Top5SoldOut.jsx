@@ -55,7 +55,9 @@ function PhoneList() {
                 <img src={phone.image} alt={phone.title} />
               </li>
               <li>
-                <Link className="phone-link" to={`/phone/${phone._id}`}><b>{phone.title}</b></Link>
+                <Link className="phone-link" to={`/phone/${phone._id}`}>
+                  <b>{phone.title}</b>
+                </Link>
               </li>
               <li>$ {phone.price}</li>
               <li>Stock: {phone.stock}</li>
@@ -73,7 +75,9 @@ function PhoneList() {
                 <img src={phone.image} alt={phone.title} />
               </li>
               <li>
-              <Link className="phone-link" to={`/phone/${phone._id}`}><b>{phone.title}</b></Link>
+                <Link className="phone-link" to={`/phone/${phone._id}`}>
+                  <b>{phone.title}</b>
+                </Link>
               </li>
               <li>$ {phone.price}</li>
               <li>Stock: {phone.stock}</li>

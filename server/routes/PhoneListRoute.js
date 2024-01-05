@@ -1,5 +1,9 @@
-const { Router } = require('express');
-const { getPhoneLists, addComment, getPhoneListsById } = require('../controller/PhoneListControllers');
+const { Router } = require("express");
+const {
+  getPhoneLists,
+  addComment,
+  getPhoneListsById,
+} = require("../controller/PhoneListControllers");
 
 const router = Router();
 
