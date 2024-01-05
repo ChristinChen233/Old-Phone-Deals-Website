@@ -54,7 +54,7 @@ function ViewComments() {
     if (currentUser != null) {
       fetchData();
     }
-  }, []);
+  }, [currentUser]);
 
   async function setHidden(comment) {
     const res = await axios.post(`${baseURL}/profile/update-hidden`, {
