@@ -36,14 +36,13 @@ function ManageListings() {
         }
       } catch (error) {
         console.log(error);
-        //setErrorMsg('Something went wrong, please login again');
       }
     };
 
     if (currentUser != null) {
       fetchData();
     }
-  }, []);
+  }, [currentUser]);
 
   //everytime frontend request `${baseURL}/profile/update-enable` api, backend will automatically update enable status,
   async function setEnable(phone) {
@@ -132,9 +131,9 @@ function ManageListings() {
         )}
       </div>
       {phones && phones.length > 0 ? (
-        <div>
+        <div className="flex-container">
           {phones.map((item, index) => (
-            <div key={index} className="cart-list-container">
+            <div key={index} className="profile-phone-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div>
                 <Link
@@ -143,27 +142,23 @@ function ManageListings() {
                   <p>{item.title}</p>
                 </Link>
                 <p>
-                  Brand: {item.brand}{" "}
+                  Brand: <strong>{item.brand}</strong>
                   {/* <button className="btn btn-yellow">Change Brand</button> */}
                 </p>
                 <p>
-                  Price: {item.price}{" "}
+                  Price: <strong>{item.price}</strong>
                   {/* <button className="btn btn-yellow">Change Price</button> */}
                 </p>
                 <p>
-                  Stock: {item.stock}{" "}
+                  Stock: <strong>{item.stock}</strong>
                   {/* <button className="btn btn-yellow">Change Stock</button> */}
                 </p>
                 <p>
                   Current Status:{" "}
                   {item.enable ? (
-                    <strong className="profile-content">
-                      Display to Public{" "}
-                    </strong>
+                    <strong>Display to Public </strong>
                   ) : (
-                    <strong className="profile-content">
-                      Hide from Public{" "}
-                    </strong>
+                    <strong>Hide from Public </strong>
                   )}{" "}
                   <button
                     onClick={() => setEnable(item)}
@@ -171,10 +166,12 @@ function ManageListings() {
                     {item.enable ? "Disable" : "Enable"}
                   </button>
                 </p>
-                <button className="btn btn-yellow"> Edit this Phone</button>{" "}
-                <button onClick={() => remove(item)} className="btn btn-red">
-                  Remove this Phone
-                </button>
+                <div className="flex-container btn-container">
+                  <button className="btn btn-yellow"> Edit this Phone</button>{" "}
+                  <button onClick={() => remove(item)} className="btn btn-red">
+                    Remove this Phone
+                  </button>
+                </div>
               </div>
             </div>
           ))}

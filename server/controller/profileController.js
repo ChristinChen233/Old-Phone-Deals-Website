@@ -178,6 +178,8 @@ async function getPhoneListingByUser(req, res) {
         brand: phonelisting.brand,
         enable: phonelisting.enable,
         phone_id: phonelisting._id.toString(),
+        stock: phonelisting.stock,
+        price: phonelisting.price,
       });
     }
 

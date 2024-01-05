@@ -5,7 +5,6 @@ import axios from "axios";
 import "./Top5SoldOut.css";
 
 function PhoneList() {
-  const [phones, setPhones] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [soldOutPhones, setSoldOutPhones] = useState([]);
 
@@ -14,7 +13,6 @@ function PhoneList() {
       try {
         const response = await axios.get(`${baseURL}/getAllPhoneList`);
         const data = response.data.data;
-        setPhones(data);
 
         // Filter best sellers
         const bestSellersData = data

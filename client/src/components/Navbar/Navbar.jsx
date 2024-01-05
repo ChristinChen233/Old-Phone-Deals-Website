@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { faUser, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies, { Cookie } from "universal-cookie";
+import Cookies from "universal-cookie";
 
 const Navbar = () => {
   const navigate = useNavigate();
