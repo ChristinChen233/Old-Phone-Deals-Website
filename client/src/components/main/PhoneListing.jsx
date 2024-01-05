@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../utils/constant";
 import "./PhoneList.css";
@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const PhoneListing = () => {
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
 
   const [phoneLists, setPhoneLists] = useState([]);
@@ -23,26 +23,27 @@ const PhoneListing = () => {
       .catch((error) => console.log(error));
   }, []);
 
-
   const handleAddToCart = async (phone) => {
-    if(currentUser) {
+    if (currentUser) {
       try {
         const quantity = parseInt(window.prompt("Enter quantity:", "1"), 10);
-          if(quantity === null || quantity === "") {
-            return;
+        if (quantity === null || quantity === "") {
+          return;
         }
         if (quantity.length >= 3) {
-            window.alert("Please specify integer only within the scope (0, 999]");
+          window.alert("Please specify integer only within the scope (0, 999]");
+          return;
+        }
+        for (let i = 0; i < quantity.length; i++) {
+          if (parseInt(quantity[i]) == null) {
+            window.alert(
+              "Please specify integer only within the scope (0, 999]"
+            );
             return;
-        } 
-        for (let i =0; i < quantity.length; i++){
-            if (parseInt(quantity[i]) == null) {
-                window.alert("Please specify integer only within the scope (0, 999]");
-                return;
-            }
+          }
         }
         if (isNaN(quantity) || quantity <= 0) {
-          alert("You must input integer larger than 0")
+          alert("You must input integer larger than 0");
           return; // Exit if the quantity is not valid
         }
         const response = await axios.post(`${baseURL}/checkout/add-to-cart`, {
@@ -61,8 +62,7 @@ const PhoneListing = () => {
       } catch (error) {
         console.log(error);
       }
-    }
-    else {
+    } else {
       navigate("/login");
     }
   };
@@ -88,7 +88,6 @@ const PhoneListing = () => {
     return phone.title.toLowerCase().includes(inputPhoneList.toLowerCase());
   });
 
-
   return (
     <div>
       <section className="section-phonelisting container">
@@ -100,8 +99,7 @@ const PhoneListing = () => {
               id="dropdown"
               value={brand}
               onChange={handleSelectChange}
-              className="input-phone"
-            >
+              className="input-phone">
               <option value="" selected>
                 -- Please Select Brand--
               </option>
@@ -131,24 +129,22 @@ const PhoneListing = () => {
             .filter((phone) => phone.stock > 0)
             .map((phone) => (
               <div className="phone-details" key={phone._id}>
-                    <img src={phone.image} alt={phone.title}></img>
-                <Link className="phone-link" to={`/phone/${phone._id}`}><b>{phone.title}</b></Link>
+                <img src={phone.image} alt={phone.title}></img>
+                <Link className="phone-link" to={`/phone/${phone._id}`}>
+                  <b>{phone.title}</b>
+                </Link>
                 <p>{phone.brand}</p>
                 <p>$ {phone.price}</p>
                 <div className="flex-container btn-container">
                   <button
                     onClick={() => handleAddToCart(phone)}
                     type="button"
-                    className="btn btn-yellow"
-                  >
+                    className="btn btn-yellow">
                     Add to Cart
-                    </button>
-                  <Link
-                    to={`/phone/${phone._id}`}
-                    className="btn btn-blue"
-                  >
+                  </button>
+                  <Link to={`/phone/${phone._id}`} className="btn btn-blue">
                     Details
-                    </Link>
+                  </Link>
                 </div>
               </div>
             ))}

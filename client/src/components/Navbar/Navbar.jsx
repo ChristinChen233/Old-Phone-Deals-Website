@@ -6,7 +6,7 @@ import Cookies, { Cookie } from "universal-cookie";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
   //console.log(currentUser)
 
@@ -19,22 +19,24 @@ const Navbar = () => {
     if (currentUser) {
       return (
         <>
-          <li >
-            <Link className="nav-items" to="/top-5-sold-out">Top 5 / Sold Out</Link>
+          <li>
+            <Link className="nav-items" to="/top-5-sold-out">
+              Top 5 / Sold Out
+            </Link>
           </li>
-          <li >
+          <li>
             <Link className="nav-items" to="/checkout">
               Checkout
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link>
           </li>
-          <li >
+          <li>
             <Link className="nav-items" to="/profile">
               User
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </li>
-          <li >
+          <li>
             <Link className="nav-items nav-btn" to="/" onClick={logout}>
               Logout
             </Link>
@@ -44,13 +46,18 @@ const Navbar = () => {
     } else {
       return (
         <>
-        <li >
-            <Link className="nav-items" to="/top-5-sold-out">Top 5 / Sold Out</Link>
+          <li>
+            <Link className="nav-items" to="/top-5-sold-out">
+              Top 5 / Sold Out
+            </Link>
           </li>
-        <li >
-          <Link className="nav-items" to="/login">Login</Link>
-        </li>
-        </>)
+          <li>
+            <Link className="nav-items" to="/login">
+              Login
+            </Link>
+          </li>
+        </>
+      );
     }
   };
 

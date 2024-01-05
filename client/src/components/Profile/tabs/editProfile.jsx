@@ -6,7 +6,7 @@ import Popup from "reactjs-popup";
 import Cookies from "universal-cookie";
 
 function EditProfile() {
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
   const [errorMsg, setErrorMsg] = useState("");
   const [email, setEmail] = useState("");
@@ -124,8 +124,10 @@ function EditProfile() {
         password: password,
         userId: userId,
       });
-      if(res.data === "empty psw") {
-        setErrorMsg("Please input your password to validate and then will be able to update your profile")
+      if (res.data === "empty psw") {
+        setErrorMsg(
+          "Please input your password to validate and then will be able to update your profile"
+        );
       }
       if (res.data.data === "good") {
         alert("Successfully Update your information!");
@@ -159,84 +161,80 @@ function EditProfile() {
 
   return (
     <>
-    <h2>Edit Profile</h2>
-    <div className="manage-user-container">
-      <label className="profile-label">First Name: </label>
-      <input
-        type="text"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        className="profile-input"
-      />
-     
-      {errs.firstname && <span>{errs.firstname}</span>}
-      <br></br>
-      <label className="profile-label">Last Name: </label>
-      <input
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        className="profile-input"
-      />
-      
-      {errs.lastname && <span className="profile-warn">{errs.lastname}</span>}
-      <br></br>
-      <label className="profile-label">Email: </label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="profile-input"
-      />
-    
-      {errs.email && <span>{errs.email}</span>}
-     
-      <button
-        className="btn btn-yellow"
-        onClick={() => {
-          if (validatePsw) {
-            setValidatePsw(false);
-          } else {
-            setValidatePsw(true);
-          }
-        }}
-      >
-        {!validatePsw ? (
-          <medium>validate password to change your details</medium>
-        ) : (
-          <medium>cancel</medium>
-        )}
-      </button>
-      {validatePsw ? (
-        <div>
-          <br></br>
-          <label htmlFor="password" className="profile-label">
-            Password:{" "}
-          </label>
-          <input
-            type="password"
-            placeholder="input your password"
-            id="password"
-            autoComplete="off"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            className="profile-input"
-            required
-          />
-          {errs.password && <p className="profile-warn">{errs.password}</p>}
-          <button
-            onClick={handleUpdateProfile}
-            className="btn btn-yellow"
-          >
-            validate
-          </button>
-          {errorMsg && <p className="profile-warn">{errorMsg}</p>}
-        </div>
-      ) : (
+      <h2>Edit Profile</h2>
+      <div className="manage-user-container">
+        <label className="profile-label">First Name: </label>
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          className="profile-input"
+        />
+
+        {errs.firstname && <span>{errs.firstname}</span>}
         <br></br>
-      )}
-      {errorMsg && <p className="profile-warn">{errorMsg}</p>}
-    </div>
+        <label className="profile-label">Last Name: </label>
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          className="profile-input"
+        />
+
+        {errs.lastname && <span className="profile-warn">{errs.lastname}</span>}
+        <br></br>
+        <label className="profile-label">Email: </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="profile-input"
+        />
+
+        {errs.email && <span>{errs.email}</span>}
+
+        <button
+          className="btn btn-yellow"
+          onClick={() => {
+            if (validatePsw) {
+              setValidatePsw(false);
+            } else {
+              setValidatePsw(true);
+            }
+          }}>
+          {!validatePsw ? (
+            <medium>validate password to change your details</medium>
+          ) : (
+            <medium>cancel</medium>
+          )}
+        </button>
+        {validatePsw ? (
+          <div>
+            <br></br>
+            <label htmlFor="password" className="profile-label">
+              Password:{" "}
+            </label>
+            <input
+              type="password"
+              placeholder="input your password"
+              id="password"
+              autoComplete="off"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className="profile-input"
+              required
+            />
+            {errs.password && <p className="profile-warn">{errs.password}</p>}
+            <button onClick={handleUpdateProfile} className="btn btn-yellow">
+              validate
+            </button>
+            {errorMsg && <p className="profile-warn">{errorMsg}</p>}
+          </div>
+        ) : (
+          <br></br>
+        )}
+        {errorMsg && <p className="profile-warn">{errorMsg}</p>}
+      </div>
     </>
   );
 }

@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
-import "../Profile.css"
+import "../Profile.css";
 import "../../Checkout/Checkout.css";
 import Cookies from "universal-cookie";
-
 
 function ViewComments() {
   const [errorMsg, setErrorMsg] = useState("");
   const [comments, setComments] = useState(null);
-  const cookies = new Cookies;
+  const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
 
   useEffect(() => {
@@ -96,30 +95,27 @@ function ViewComments() {
         <div>
           {comments.map((item, index) => (
             <div key={index} className="manage-comments-container">
-              <img
-                src={`./imgs/${item.brand}.jpeg`}
-                alt={item.title}
-              ></img>
+              <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div className="profile-comments-right">
-              <p className="checkout-heading">{item.title}</p>
-              <strong>Comment Below Reviewed by: {item.reviewerFirstName}</strong><br></br>
-              <p className="profile-comments">
-                {item.comment}
-              </p>
-              <p>
-                Current Status:{" "}
-                {!item.hidden ? (
-                  <strong>Display to Public </strong>
-                ) : (
-                  <strong>Hide from Public </strong>
-                )}
-                <button
-                  className="btn btn-green"
-                  onClick={() => setHidden(item)}
-                >
-                  {item.hidden ? "Set to Public" : "Hide"}
-                </button>
-              </p>
+                <p className="checkout-heading">{item.title}</p>
+                <strong>
+                  Comment Below Reviewed by: {item.reviewerFirstName}
+                </strong>
+                <br></br>
+                <p className="profile-comments">{item.comment}</p>
+                <p>
+                  Current Status:{" "}
+                  {!item.hidden ? (
+                    <strong>Display to Public </strong>
+                  ) : (
+                    <strong>Hide from Public </strong>
+                  )}
+                  <button
+                    className="btn btn-green"
+                    onClick={() => setHidden(item)}>
+                    {item.hidden ? "Set to Public" : "Hide"}
+                  </button>
+                </p>
               </div>
               <br></br>
             </div>
