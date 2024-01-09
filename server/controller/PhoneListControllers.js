@@ -4,8 +4,8 @@ const UserListModel = require("../model/userlist");
 module.exports.getPhoneLists = async (req, res) => {
   try {
     const phones = await PhoneListModel.find({});
+    //console.log(phones)
     const { phoneId } = req.params;
-    // console.log(phones)
     const updatedPhones = phones.map((phone) => {
       phone.image = "./imgs/" + phone.brand + ".jpeg";
       // phone.phone_id = phone._id;
