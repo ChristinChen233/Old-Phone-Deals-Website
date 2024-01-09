@@ -2,11 +2,11 @@
 
 OldPhoneDeals is a second-hand mobile phone trading website that features shopping functionalities and a comprehensive user system, including registration, login, listing mobile phones that users want to trade, and managing comments under products. The website's front-end is developed using the React.js framework, while the back-end is built with MVC architechture and Node.js as the programming language, and it interacts with the MongoDB cloud-based database services using mongoose package.
 
-<img width="1419" alt="5" src="https://github.com/ChristinChen233/Old-Phone-Deals-Website/assets/121276505/802c53bd-fa5d-42f6-a2de-30dab47f2ea7">
-
 ### Main Page
 
 Main Page lists all the enabled phones, so the users can see the details, make comments and add the phone to the cart. Users also can filter the phone lists based on the branch and name.
+
+<img width="1419" alt="5" src="https://github.com/ChristinChen233/Old-Phone-Deals-Website/assets/121276505/802c53bd-fa5d-42f6-a2de-30dab47f2ea7">
 
 ### Detail Pop up
 
