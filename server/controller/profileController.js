@@ -167,6 +167,7 @@ async function getPhoneListingByUser(req, res) {
 
     const items = [];
     const phonelistings = await PhoneListing.find({ seller: currentUserIdStr });
+    //console.log(phonelistings)
 
     if (!phonelistings || phonelistings.length === 0) {
       return res.json("no item");
