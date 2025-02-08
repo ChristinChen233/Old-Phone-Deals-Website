@@ -79,7 +79,7 @@ $ npm start
 
 ## Developers
 
-- Main page: [Rina Yoo](https://github.com/RinaYoo) and Ruoshui(Christin) Chen (full stack)
-- User Authentication system: [Ruoshui(Christin) Chen](https://github.com/ChristinChen233) (full stack)
-- Checkout Page (shopping cart): Ruoshui(Christin) Chen (front end), [Jingyu(Lucas) Lu](https://github.com/Lu-Whale) (back end)
-- User Profile page: Ruoshui(Christin) Chen & Lucas (front end), Jingyu(Lucas) Lu (back end)
+- Main page: [Rina Yoo](https://github.com/RinaYoo) and [Ruoshui(Christin) Chen](https://github.com/ChristinChen233) (full stack)
+- User Authentication system: Christin (full stack)
+- Checkout Page (shopping cart): Christin (front end), [Jingyu(Lucas) Lu](https://github.com/Lu-Whale) (back end)
+- User Profile page: Christin & Lucas (front end), Christin (back end)
