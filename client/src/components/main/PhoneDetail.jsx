@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "universal-cookie";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const PhoneDetail = () => {
   const cookies = new Cookies();
@@ -14,7 +16,7 @@ const PhoneDetail = () => {
   const param = useParams();
   const [phone, setPhone] = useState(null);
   const navigate = useNavigate();
-  const [visibleReviews, setVisibleReviews] = useState(5);
+  const [visibleReviews, setVisibleReviews] = useState(3);
 
   useEffect(() => {
     const getPhone = async () => {
@@ -86,6 +88,25 @@ const PhoneDetail = () => {
     setVisibleReviews(3);
   };
 
+  const handleDeleteComment = () => {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure to delete this comment?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => DeleteComment(),
+        },
+        {
+          label: "No",
+          //onClick: () => alert('Click No')
+        },
+      ],
+    });
+  };
+
+  const DeleteComment = () => {};
+
   return (
     <div>
       {phone ? (
@@ -110,7 +131,7 @@ const PhoneDetail = () => {
               <p className="left-par">
                 Average Rating:{" "}
                 <strong>
-                  {phone.reviews > 0
+                  {phone.reviews.length > 0
                     ? Math.round(
                         (phone.reviews.reduce(
                           (sum, curr) => sum + Number(curr.rating),
@@ -148,7 +169,9 @@ const PhoneDetail = () => {
                   </thead>
                   <tbody>
                     {phone.reviews.slice(0, visibleReviews).map((review) => {
-                      return <CommentCard review={review}></CommentCard>;
+                      return (
+                          <CommentCard review={review}></CommentCard>
+                      );
                     })}
                   </tbody>
                 </table>
