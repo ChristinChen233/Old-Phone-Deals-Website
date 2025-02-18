@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
 import "../Profile.css";
@@ -93,16 +94,23 @@ function ViewComments() {
       {errorMsg && <p>{errorMsg}</p>}
       {comments && comments.length > 0 ? (
         <div>
+          <h3>Comments Left to You</h3>
+          <br></br>
           {comments.map((item, index) => (
             <div key={index} className="manage-comments-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div className="profile-comments-right">
-                <p className="checkout-heading">{item.title}</p>
-                <strong>
-                  Comment Below Reviewed by: {item.reviewerFirstName}
-                </strong>
-                <br></br>
+                <Link
+                  to={`/phone/${item.phoneListingId}`}
+                  className="checkout-heading">
+                  {item.title}
+                </Link>
+                <p>
+                  <strong>Rating: </strong>
+                  {`${item.rating} `}
+                </p>
                 <p className="profile-comments">{item.comment}</p>
+                <strong>Reviewed by: {item.reviewerFirstName}</strong>
                 <p>
                   Current Status:{" "}
                   {!item.hidden ? (
