@@ -132,15 +132,18 @@
 }
 
 .profile-nav-btn:hover {
-  background-color: #32779d;
-  border-color: transparent;
-  color: #fff;
+  /* background-color: #32779d; */
+  text-decoration: underline;
+  color: #877cfe;
 }
 
-.profile-nav-btn:active {
-  background-color: #60a4b3;
-  /* box-shadow: 0 5px #666;
-    transform: translateY(4px); */
+.profile-nav-btn-blue {
+  background-color: rgb(86, 158, 170);
+  color: rgb(248, 244, 244);
+}
+
+.profile-nav-btn-blue:hover {
+  color: rgb(248, 244, 244);
 }
 
 .profile-add-phone-box {

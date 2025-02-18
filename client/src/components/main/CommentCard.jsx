@@ -7,6 +7,7 @@ import "./PhoneList.css";
  * props : {review: review}
  *
  */
+
 const CommentCard = (props) => {
   const [showLess, setShowLess] = useState(false);
   const commentToShow =

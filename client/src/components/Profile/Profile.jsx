@@ -33,70 +33,72 @@ const Profile = () => {
     );
   };
 
-  const Bars = () => {
+  const Bars = ({ mode }) => {
     return (
       <div>
-        <Greetings></Greetings>
+        <Greetings />
         <div className="profile-nav-container">
-          <button onClick={toEditProfile} className="profile-nav-btn">
+          <button
+            onClick={toEditProfile}
+            className={`profile-nav-btn ${mode === "edit-profile" ? "profile-nav-btn-blue" : ""}`}
+          >
             Edit Profile
           </button>
-          <button onClick={toChangePsw} className="profile-nav-btn">
+  
+          <button
+            onClick={toChangePsw}
+            className={`profile-nav-btn ${mode === "change-psw" ? "profile-nav-btn-blue" : ""}`}
+          >
             Change Password
           </button>
-          <button onClick={toManageList} className="profile-nav-btn">
-            Manage Phone listings
+  
+          <button
+            onClick={toManageList}
+            className={`profile-nav-btn ${mode === "manage-ls" ? "profile-nav-btn-blue" : ""}`}
+          >
+            Manage Phone Listings
           </button>
-          <button onClick={toComments} className="profile-nav-btn">
-            View comments
+  
+          <button
+            onClick={toComments}
+            className={`profile-nav-btn ${mode === "comments" ? "profile-nav-btn-blue" : ""}`}
+          >
+            View Comments
           </button>
         </div>
       </div>
     );
   };
-
-  if (mode === "edit-profile") {
-    return (
-      <div className="profile-container">
-        <Bars />
-        <EditProfile />
-      </div>
-    );
-  }
-
-  if (mode === "change-psw") {
-    return (
-      <div className="profile-container">
-        <Bars />
-        <ChangePassword />
-      </div>
-    );
-  }
-
-  if (mode === "manage-ls") {
-    return (
-      <div className="profile-container">
-        <Bars />
-        <h2>Manage Your Phones</h2>
-        <ManageListings />
-      </div>
-    );
-  }
-
-  if (mode === "comments") {
-    return (
-      <div className="profile-container">
-        <Bars />
-        <h2>Manage Your Comments</h2>
-        <ViewComments />
-      </div>
-    );
-  }
+  
+  const renderContent = () => {
+    switch (mode) {
+      case "edit-profile":
+        return <EditProfile />;
+      case "change-psw":
+        return <ChangePassword />;
+      case "manage-ls":
+        return (
+          <>
+            <h2>Manage Your Phones</h2>
+            <ManageListings />
+          </>
+        );
+      case "comments":
+        return (
+          <>
+            <h2>Manage Your Comments</h2>
+            <ViewComments />
+          </>
+        );
+      default:
+        return <EditProfile />;
+    }
+  };
 
   return (
     <div className="profile-container">
-      <Bars />
-      <EditProfile />
+      <Bars mode={mode} />
+      {renderContent()}
     </div>
   );
 };
