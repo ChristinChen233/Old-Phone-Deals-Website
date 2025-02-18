@@ -24,7 +24,7 @@ const AddCommentForm = (props) => {
       });
 
       console.log(response.data);
-      alert("You have uploaded your comments! Please refresh the page");
+      alert("Successfully submitted your comments!");
       // Reset form fields
       setRating("");
       setComment("");

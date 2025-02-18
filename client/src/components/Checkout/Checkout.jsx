@@ -123,7 +123,6 @@ const Checkout = () => {
         return;
       }
       if (res.data === "Success" || res.data === "test") {
-        //检查以下代码逻辑
         phone.num = v;
         const updatedPhones = phones.map((p) => {
           if (p === phone) {

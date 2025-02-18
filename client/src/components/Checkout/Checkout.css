@@ -1,5 +1,6 @@
 .checkout-container {
   margin: 10% 20%;
+  font-size: large;
 }
 
 .checkout-btn-green:hover {
@@ -11,12 +12,7 @@
   border-radius: 5px;
   padding: 0.8% 1.5%;
   border: 2px solid rgb(145, 167, 214);
-  font-size: small;
-}
-
-.checkout-input:focus {
-  border: 2px solid rgb(145, 167, 214);
-  background-color: #e7f0f2;
+  font-size: large;
 }
 
 .checkout-label {
@@ -24,12 +20,11 @@
   padding: 0.25rem;
   font-weight: bold;
   margin: 0 0 2rem;
-  font-size: large;
 }
 
 .checkout-heading {
-  font-size: larger;
   color: #18687c;
+  font-size: larger;
 }
 
 .checkout-heading:hover {
@@ -37,13 +32,14 @@
 }
 
 .cart-list-container {
+  line-height: 120%;
   display: flex;
   gap: 4rem;
   align-items: center;
   background-color: #c8e0f8;
   border: solid #314789 2px;
   border-radius: 5px;
-  padding: 3rem;
+  padding: 1.5rem;
   margin: 2rem 0;
 }
 
