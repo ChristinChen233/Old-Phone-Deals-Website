@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:8000/api";
+const baseURL = "http://3.27.235.130:8000/api";
 
 const listData = (URL, callback) => {
   axios

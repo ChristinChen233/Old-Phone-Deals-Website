@@ -20,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
+	  <title>Old Phone Deals</title>
       <Routes>
         <Route path="/" element={<PhoneListing />} />
         <Route path="/profile" element={<Profile />} />
