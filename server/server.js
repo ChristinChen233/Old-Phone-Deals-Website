@@ -50,7 +50,7 @@ app.use("/api", profileRoutes);
 
 //Connecting to Server on port 8000
 
-app.listen(BACK_PORT, function (error) {
+app.listen(BACK_PORT,'0.0.0.0', function (error) {
   if (error) {
     console.log("error");
   } else {
