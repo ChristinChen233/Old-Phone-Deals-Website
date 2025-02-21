@@ -26,14 +26,14 @@ const PhoneDetail = () => {
         if (res.data.status === "ok") {
           setPhone(res.data.data);
           // res.data.data.reviews.filter((elem))
-          console.log(phone);
+        //  console.log(phone);
         }
       } catch (e) {
         console.log(e);
       }
     };
     getPhone();
-  });
+  }, [param.phoneid]);//Modify your useEffect to run only when param.phoneid changes:
 
   const handleAddToCart = async (phone) => {
     if (currentUser) {
@@ -81,7 +81,8 @@ const PhoneDetail = () => {
     }
   };
   const handleShowMore = () => {
-    setVisibleReviews((prevVisibleReviews) => prevVisibleReviews + 5);
+   // setVisibleReviews((prevVisibleReviews) => prevVisibleReviews + 5);
+    setVisibleReviews((prev) => Math.min(prev + 5, phone.reviews.length)); // Load 3 at a time
   };
 
   const handleShowLess = () => {

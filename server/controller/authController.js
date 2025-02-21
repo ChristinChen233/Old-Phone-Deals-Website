@@ -141,7 +141,7 @@ const signup = async (req, res) => {
         token: crypto.randomBytes(32).toString("hex"),
       }).save();
       const url = `${WEBSITE_URL}/users/${usr_id}/verify/${token.token}`;
-      await sendEmail(email, "Click the Link to Verify Your Email", url);
+      await sendEmail(email, "From OldPhoneDeal Website: Click the Link to Verify Your Email", url);
       console.log("send (sign up)!");
       res.json("verify sent");
     }
@@ -180,7 +180,7 @@ const forget_psw = async (req, res) => {
             email: email,
           }).save();
           const url = `${WEBSITE_URL}/forgetpswUsers?id=${usr_id}&token=${tokenForgetPsw.token}`;
-          await sendEmail(email, "Click the Link to Reset Your Password", url);
+          await sendEmail(email, "From OldPhoneDeal Website: Click the Link to Reset Your Password", url);
           console.log("send (reset psw)!");
         }
         res.json("reset sent");
