@@ -58,7 +58,7 @@ const PhoneListing = () => {
         if (response.data.data === "Bad stock") {
           alert(response.data.msg);
         }
-        console.log(response.data, phone._id, phone.title);
+       // console.log(response.data, phone._id, phone.title);
       } catch (error) {
         console.log(error);
       }

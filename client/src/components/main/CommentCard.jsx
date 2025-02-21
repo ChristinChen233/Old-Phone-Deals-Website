@@ -7,49 +7,32 @@ import "./PhoneList.css";
  * props : {review: review}
  *
  */
-
-const CommentCard = (props) => {
-  const [showLess, setShowLess] = useState(false);
-  const commentToShow =
-    props.review.comment.length > 200
-      ? showLess
-        ? props.review.comment
-        : `${props.review.comment.substring(0, 200)}...`
-      : props.review.comment;
-
+// Use React.memo to prevent unnecessary updates: avoid re-renders the parent re-renders
+const CommentCard = React.memo(({ review }) => {
+  const [showLess, setShowLess] = useState(true);
+  
   return (
-    <tr className="comments" key={props.review._id}>
-      <td
-        className="left-par"
-        style={{
-          whiteSpace: "pre-wrap",
-          overflowWrap: "break-word",
-        }}>
-        {/* {index}<br></br> */}
-
-        {props.review.comment.length > 200 ? (
-          <div>
-            {commentToShow}
-            {props.review.comment.length > 200 && (
-              <button
-                type="button"
-                className="showmore-btn"
-                onClick={() => {
-                  setShowLess(!showLess);
-                }}>
-                {showLess ? "Show less" : "Show more"}
-              </button>
-            )}
-
-            <br />
-          </div>
+    <tr className="comments" key={review._id}>
+      <td className="left-par" style={{ whiteSpace: "pre-wrap", overflowWrap: "break-word" }}>
+        {review.comment.length > 200 ? (
+          <>
+            {!showLess ? review.comment : `${review.comment.substring(0, 200)}...`}
+            <button
+              type="button"
+              className="showmore-btn"
+              onClick={() => setShowLess(!showLess)}
+            >
+              {showLess ? "Show more" : "Show less"}
+            </button>
+          </>
         ) : (
-          props.review.comment
+          review.comment
         )}
       </td>
-      <td>{props.review.rating}</td>
-      <td>{props.review.reviewerName}</td>
+      <td>{review.rating}</td>
+      <td>{review.reviewerName}</td>
     </tr>
   );
-};
+});
+
 export default CommentCard;
