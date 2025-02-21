@@ -103,12 +103,12 @@
   border-bottom: solid 1px;
   cursor: pointer;
   background-color: transparent;
-  transition: 0.2s linear;
 }
 
 .showmore-btn:hover {
   color: #fff;
   background-color: rgb(83, 83, 243);
+  transition: 0.2s linear;
 }
 
 .comment-table {
