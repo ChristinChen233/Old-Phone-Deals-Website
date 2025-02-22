@@ -18,9 +18,9 @@ const PhoneListing = () => {
     axios
       .get(`${baseURL}/getAllPhoneList?enable=true`)
       .then((res) => {
-      console.log(res)
-	      setPhoneLists(res.data.data);
-      })
+      // console.log(res)
+	     //  setPhoneLists(res.data.data);
+      // })
       .catch((error) => console.log(error));
   }, []);
 
