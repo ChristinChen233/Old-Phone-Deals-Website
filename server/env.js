@@ -1,6 +1,6 @@
 module.exports = {
   PORT: 3000,
-  WEBSITE_URL: "http://3.27.235.130:3000",
+  WEBSITE_URL: "https://userplantform.oldphonedeal.online",
   EMAIL_PORT: 587,
   SENDER: "christinchen233@outlook.com",
   PASSWORD: "COmp5437!",

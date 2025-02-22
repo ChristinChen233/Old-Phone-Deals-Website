@@ -2,9 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 var mongoose = require("mongoose");
+require("dotenv").config();
+
+const BACK_PORT = process.env.PORT || 8000;
+const WEBSITE_URL = process.env.WEBSITE_URL;
+const EMAIL_PORT = process.env.EMAIL_PORT;
+const SENDER = process.env.SENDER;
+const PASSWORD = process.env.PASSWORD;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
 // ENV virables
-const { DB_USERNAME, DB_PASSWORD, BACK_PORT } = require("./env.js");
+//const { DB_USERNAME, DB_PASSWORD, BACK_PORT } = require("./env.js");
 
 // Connecting to database
 mongoose
