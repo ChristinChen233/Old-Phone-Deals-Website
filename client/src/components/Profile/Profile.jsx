@@ -94,9 +94,10 @@ const Profile = () => {
         return <EditProfile />;
     }
   };
+  
 
   return (
-    <div className="profile-container">
+    <div className="profile-container page-container">
       <Bars mode={mode} />
       {renderContent()}
     </div>

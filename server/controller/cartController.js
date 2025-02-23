@@ -168,7 +168,7 @@ const AddCartItem = async (req, res) => {
       cartItems: [{ phone_id, title, num, price, brand }],
     });
     await newCart.save();
-    return res.send({ status: "ok", message: "Added to cart" });
+    return res.send({ status: "ok", message: "Added to cart"});
   } else {
     // Add item to existing cart
     let ItemExistsInCart = false;

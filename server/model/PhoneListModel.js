@@ -13,11 +13,13 @@ const phoneListSchema = new mongoose.Schema(
     enable: { type: Boolean, default: true },
     reviews: [
       {
-        reviewer: String,
+        _id: { type: mongoose.Schema.Types.ObjectId, auto: true }, // Mongoose automatically generates `_id`
+        reviewUploadTime: { type: Date, default: Date.now }, // Corrected Date type
+        reviewer: String, //the _id of user
         reviewerName: { type: String, default: "" },
-        rating: Number,
-        comment: String,
-        hidden: { type: Boolean, default: false }, //should be false or ture ????
+        rating: { type: Number, required: true, min: 1, max: 5 }, // Ensure rating is between 1-5
+        comment: { type: String, required: true },
+        hidden: { type: Boolean, default: false },
       },
     ],
   },

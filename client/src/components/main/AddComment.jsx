@@ -23,8 +23,10 @@ const AddCommentForm = (props) => {
         currentUserId: currentUser.userId, // Assuming `currentUser` contains the `userId` property
       });
 
-      console.log(response.data);
+      //console.log(response.data.data);
       alert("Successfully submitted your comments!");
+      const newComment = response.data.data; // Assuming response contains new comment
+      props.setReviews((prevReviews) => [newComment, ...prevReviews]); // Add new comment at the top
       // Reset form fields
       setRating("");
       setComment("");

@@ -37,7 +37,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="nav-items nav-btn" to="/" onClick={logout}>
+            <Link className="nav-items" to="/" onClick={logout}>
               Logout
             </Link>
           </li>
@@ -62,12 +62,12 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <nav className="nav flex-container">
+    <div className="page-header-container">
+      <nav className="nav">
         <Link className="nav-logo" to="/">
           OldPhoneDeals
         </Link>
-        <ul className="flex-container nav-list">
+        <ul className="nav-list">
           <NavLists />
         </ul>
       </nav>

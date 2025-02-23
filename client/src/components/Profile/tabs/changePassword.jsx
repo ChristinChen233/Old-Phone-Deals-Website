@@ -12,6 +12,7 @@ function ChangePassword() {
   const [errorMsg, setErrorMsg] = useState("");
   const [errs, setErrs] = useState({});
   const [indicator, setIndicator] = useState(false);
+  //console.log(cookies.get("currentUser"))
 
   const handleCurrentPasswordChange = (event) => {
     setCurrentPassword(event.target.value);
@@ -51,19 +52,21 @@ function ChangePassword() {
 
     try {
       setErrs(validation());
-      console.log(currentPassword + " " + newPassword);
+    //  console.log(currentPassword + " " + newPassword);
       if (indicator) {
         console.log("err input");
         return;
       }
+      const usrId = cookies.get("currentUser")?.userId;
       const response = await axios.post(`${baseURL}/profile/change-password`, {
         email,
         currentPassword,
         newPassword,
+        usrId
       });
 
       if (response.data === "no user") {
-        console.log("hi");
+       // console.log("hi");
         setErrorMsg("User not found, you may need to login again");
       }
       if (response.data === "invalid psw") {

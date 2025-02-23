@@ -17,6 +17,7 @@ const PhoneDetail = () => {
   const [phone, setPhone] = useState(null);
   const navigate = useNavigate();
   const [visibleReviews, setVisibleReviews] = useState(3);
+  const [reviews, setReviews] = useState(null);
 
   useEffect(() => {
     const getPhone = async () => {
@@ -25,6 +26,7 @@ const PhoneDetail = () => {
         const res = await axios.get(url);
         if (res.data.status === "ok") {
           setPhone(res.data.data);
+          setReviews(res.data.data.reviews);
           // res.data.data.reviews.filter((elem))
         //  console.log(phone);
         }
@@ -109,7 +111,7 @@ const PhoneDetail = () => {
   const DeleteComment = () => {};
 
   return (
-    <div>
+    <div className="page-container">
       {phone ? (
         <div className="phone">
           <div className="phone-detail-container">
@@ -132,13 +134,13 @@ const PhoneDetail = () => {
               <p className="left-par">
                 Average Rating:{" "}
                 <strong>
-                  {phone.reviews.length > 0
+                  {reviews.length > 0
                     ? Math.round(
-                        (phone.reviews.reduce(
+                        (reviews.reduce(
                           (sum, curr) => sum + Number(curr.rating),
                           0
                         ) /
-                          phone.reviews.length) *
+                        reviews.length) *
                           10
                       ) / 10
                     : "No rating yet"}{" "}
@@ -156,9 +158,9 @@ const PhoneDetail = () => {
           <br></br>
           <div className="comment-container">
             <h2>Reviews</h2>
-            <AddCommentForm phone_id={phone._id} />
+            <AddCommentForm phone_id={phone._id} setReviews={setReviews} />
             <br></br>
-            {phone.reviews.length > 0 ? (
+            {reviews.length > 0 ? (
               <div>
                 <table className="comment-table">
                   <thead>
@@ -169,14 +171,14 @@ const PhoneDetail = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {phone.reviews.slice(0, visibleReviews).map((review) => {
+                    {reviews.slice(0, visibleReviews).map((review) => {
                       return (
                           <CommentCard review={review}></CommentCard>
                       );
                     })}
                   </tbody>
                 </table>
-                {visibleReviews < phone.reviews.length && (
+                {visibleReviews < reviews.length && (
                   <button
                     onClick={() => {
                       handleShowMore();
@@ -185,8 +187,8 @@ const PhoneDetail = () => {
                     Show more Comments
                   </button>
                 )}
-                {visibleReviews >= phone.reviews.length &&
-                  phone.reviews.length > 5 && (
+                {visibleReviews >= reviews.length &&
+                  reviews.length > 5 && (
                     <button
                       className="btn btn-red"
                       onClick={() => {

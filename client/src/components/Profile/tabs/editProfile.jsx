@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
@@ -6,6 +6,7 @@ import "../../../index.css";
 import Cookies from "universal-cookie";
 
 function EditProfile() {
+  //localStorage.removeItem("currentUser");
   const cookies = new Cookies();
   const currentUser = cookies.get("currentUser");
   const [errorMsg, setErrorMsg] = useState("");
@@ -18,14 +19,17 @@ function EditProfile() {
   const [validatePsw, setValidatePsw] = useState(false);
 
   useEffect(() => {
+   // console.log(currentUser)
     // Get user data from backend and set initial state
     const fetchUserData = async () => {
+    //  console.log('hi')
       try {
         const res = await axios.post(`${baseURL}/profile/user`, {
           currentUserId: currentUser.userId,
         });
         // console.log(currentUser.userId);
-        console.log(res);
+       // console.log(res);
+        //console.log('in fetchUserData',currentUser)
         setEmail(res.data.email);
         setFirstName(res.data.firstname);
         setLastName(res.data.lastname);
@@ -38,8 +42,11 @@ function EditProfile() {
 
     if (currentUser != null) {
       fetchUserData();
+      //console.log('hi')
+    } else {
+      alert('You have been Logged out, please log in again')
     }
-  }, [currentUser]);
+  }, []);
 
   function validation() {
     let err = {};
@@ -132,7 +139,7 @@ function EditProfile() {
       if (res.data.data === "good") {
         alert("Successfully Update your information!");
         currentUser.email = res.data.user.email;
-        window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
+       // window.localStorage.setItem("currentUser", JSON.stringify(currentUser));
       }
       if (res.data === "no user") {
         setErrorMsg("No such user!");

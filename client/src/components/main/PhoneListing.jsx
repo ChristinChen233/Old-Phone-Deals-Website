@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import { baseURL } from "../../utils/constant";
-import "./PhoneList.css";
 import { useNavigate, Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import "./PhoneList.css";
 
 const PhoneListing = () => {
   const cookies = new Cookies();
@@ -17,103 +17,90 @@ const PhoneListing = () => {
   useEffect(() => {
     axios
       .get(`${baseURL}/getAllPhoneList?enable=true`)
-      .then((res) => {
-        setPhoneLists(res.data.data);
-      })
-      .catch((error) => console.log(error));
+      .then((res) => setPhoneLists(res.data.data))
+      .catch(console.error);
   }, []);
 
   const handleAddToCart = async (phone) => {
-    if (currentUser) {
-      try {
-        const quantity = parseInt(window.prompt("Enter quantity:", "1"), 10);
-        if (quantity === null || quantity === "") {
-          return;
-        }
-        if (quantity.length >= 3) {
-          window.alert("Please specify integer only within the scope (0, 999]");
-          return;
-        }
-        for (let i = 0; i < quantity.length; i++) {
-          if (parseInt(quantity[i]) == null) {
-            window.alert(
-              "Please specify integer only within the scope (0, 999]"
-            );
-            return;
-          }
-        }
-        if (isNaN(quantity) || quantity <= 0) {
-          alert("You must input integer larger than 0");
-          return; // Exit if the quantity is not valid
-        }
-        const response = await axios.post(`${baseURL}/checkout/add-to-cart`, {
-          userId: currentUser.userId,
-          phone_id: phone._id,
-          title: phone.title,
-          num: quantity, // assuming that you always add one phone to the cart
-          price: phone.price,
-          brand: phone.brand,
-        });
-
-        if (response.data.data === "Bad stock") {
-          alert(response.data.msg);
-        }
-       // console.log(response.data, phone._id, phone.title);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    //add code to prevent event propogate to parent element
+    if (!currentUser) {
       navigate("/login");
+      return;
+    }
+
+    try {
+      let quantity = parseInt(window.prompt("Enter quantity:", "1"), 10);
+
+      if (isNaN(quantity) || quantity <= 0 || quantity > 999) {
+        alert("Please enter a valid integer between 1 and 999.");
+        return;
+      }
+
+      const response = await axios.post(`${baseURL}/checkout/add-to-cart`, {
+        userId: currentUser.userId,
+        phone_id: phone._id,
+        title: phone.title,
+        num: quantity,
+        price: phone.price,
+        brand: phone.brand,
+      });
+
+      if (response.data.data === "Bad stock") {
+        alert(response.data.msg);
+      }
+
+      if (response.data.status === "ok") {
+        //console.log('added')
+        alert('Added to Cart');
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  //For dropdown filter based on brand
-  const handleSelectChange = (e) => {
-    setBrand(e.target.value);
+  // Filtered phone lists
+  const searchedPhoneLists = useMemo(() => {
+    return phoneLists
+      .filter((phone) => phone.enable && phone.stock > 0)
+      .filter((phone) => !brand || phone.brand.toLowerCase() === brand.toLowerCase())
+      .filter((phone) => !inputPhoneList || phone.title.toLowerCase().includes(inputPhoneList.toLowerCase()));
+  }, [phoneLists, brand, inputPhoneList]);
+
+const PhoneCard = ({ phone, handleAddToCart }) => {
+  const handleCardClick = () => {
+    navigate(`/phone/${phone._id}`);
   };
+  return (
+    <div className="phone-details" onClick={handleCardClick}>
+      <img src={phone.image} alt={phone.title} />
+      <b className="phone-link">{phone.title.length > 100 ? phone.title.substring(0, 100)+'...' : phone.title}</b>
+      <p>{phone.brand}</p>
+      <p>$ {phone.price}</p>
+      <div className="flex-container btn-container">
+        <button onClick={(e) => {e.stopPropagation(); handleAddToCart(phone);}} className="btn btn-yellow">
+          Add to Cart
+        </button>
+        <Link to={`/phone/${phone._id}`} className="btn btn-blue" onClick={(e) => e.stopPropagation()}>
+          Details
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-  //Filter phone lists based on selected brand
-  const filteredPhoneLists = phoneLists.filter((phone) => {
-    if (brand === "") {
-      return true;
-    }
-    return phone.brand.toLowerCase() === brand.toLowerCase();
-  });
-
-  //Filter phone lists based on inputPhoneList
-  const searchedPhoneLists = filteredPhoneLists.filter((phone) => {
-    if (inputPhoneList === "") {
-      return true;
-    }
-    return phone.title.toLowerCase().includes(inputPhoneList.toLowerCase());
-  });
 
   return (
     <div>
-      <section className="section-phonelisting container">
+      <section className="section-phonelisting container page-container">
         <h2>Phone Lists</h2>
 
         <div className="input-container">
-          <div>
-            <select
-              id="dropdown"
-              value={brand}
-              onChange={handleSelectChange}
-              className="input-phone">
-              <option value="" selected>
-                -- Please Select Brand--
-              </option>
-              <option value="samsung">Samsung</option>
-              <option value="apple">Apple</option>
-              <option value="lg">LG</option>
-              <option value="huawei">Huawei</option>
-              <option value="sony">Sony</option>
-              <option value="blackberry">BlackBerry</option>
-              <option value="nokia">Nokia</option>
-              <option value="motorola">Motorola</option>
-              <option value="htc">HTC</option>
-            </select>
-          </div>
+          <select value={brand} onChange={(e) => setBrand(e.target.value)} className="input-phone">
+            <option value="">-- Please Select Brand --</option>
+            {["Samsung", "Apple", "LG", "Huawei", "Sony", "BlackBerry", "Nokia", "Motorola", "HTC"].map((b) => (
+              <option key={b} value={b.toLowerCase()}>{b}</option>
+            ))}
+          </select>
           <input
             type="text"
             placeholder="Enter phone name"
@@ -124,30 +111,9 @@ const PhoneListing = () => {
         </div>
 
         <div className="flex-container">
-          {searchedPhoneLists
-            .filter((phone) => phone.enable) // Filter only enabled phones
-            .filter((phone) => phone.stock > 0)
-            .map((phone) => (
-              <div className="phone-details" key={phone._id}>
-                <img src={phone.image} alt={phone.title}></img>
-                <Link className="phone-link" to={`/phone/${phone._id}`}>
-                  <b>{phone.title}</b>
-                </Link>
-                <p>{phone.brand}</p>
-                <p>$ {phone.price}</p>
-                <div className="flex-container btn-container">
-                  <button
-                    onClick={() => handleAddToCart(phone)}
-                    type="button"
-                    className="btn btn-yellow">
-                    Add to Cart
-                  </button>
-                  <Link to={`/phone/${phone._id}`} className="btn btn-blue">
-                    Details
-                  </Link>
-                </div>
-              </div>
-            ))}
+        {searchedPhoneLists.map((phone) => (
+          <PhoneCard key={phone._id} phone={phone} handleAddToCart={handleAddToCart} />
+        ))}
         </div>
       </section>
     </div>

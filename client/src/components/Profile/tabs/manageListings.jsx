@@ -24,11 +24,11 @@ function ManageListings() {
           { currentUserId: currentUser.userId }
         );
 
-        console.log(res.data.item);
+       // console.log(res.data.item);
         setErrorMsg("");
 
         if (res.data === "no item") {
-          console.log(res.data);
+         // console.log(res.data);
           return;
         }
         if (res.data.data === "good") {
@@ -80,7 +80,7 @@ function ManageListings() {
   async function remove(phone) {
     try {
       const id = phone.phone_id;
-      console.log(id);
+     // console.log(id);
       const res = await axios.delete(`${baseURL}/profile/${id}`);
 
       if (res.data === "Bad delete") {

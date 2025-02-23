@@ -115,6 +115,7 @@ function Signup() {
           lastname,
         })
         .then((res) => {
+          //console.log(res.data)
           if (res.data === "exist") {
             setErrs({
               email: "have already registered! Please go to login page",

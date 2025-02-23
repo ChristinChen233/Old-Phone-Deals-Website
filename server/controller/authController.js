@@ -6,7 +6,9 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const jwtToken = require("../utils/jwt.js");
 const mongoose = require("mongoose");
-const { WEBSITE_URL } = require("../env.js");
+require("dotenv").config();
+
+const WEBSITE_URL = process.env.WEBSITE_URL;
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -119,6 +121,7 @@ const signup = async (req, res) => {
     console.log(cur_usr);
     if (cur_usr) {
       if (cur_usr.verified) {
+        //console.log(cur_usr)
         res.json("exist");
       } else {
         let usr_id = cur_usr._id.toString();
@@ -130,6 +133,7 @@ const signup = async (req, res) => {
           res.json("noexist");
           return;
         }
+        //console.log(`${WEBSITE_URL}/users/${usr_id}/verify/${token.token}`)
         res.json("verify sent");
       }
     } else {
