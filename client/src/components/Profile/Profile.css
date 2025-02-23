@@ -1,5 +1,6 @@
 .profile-container {
-  margin: 10%;
+  /* //margin: 10%;
+  flex:1; */
 }
 
 .profile-greeting {
@@ -112,22 +113,24 @@
   border-radius: 5px;
   margin-bottom: 2rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(186, 220, 241);
 }
 
 .profile-nav-btn {
   padding: 1%;
   border: none;
-  flex: 25%;
+  flex: 1;
   /* border-radius: 5px; */
   background: none;
   color: rgb(4, 70, 156);
   cursor: pointer;
-  width: 25%;
-  height: 80%;
-  font-size: 100%;
+  width: 100%;
+  height: 40px;
+  font-size: auto;
   font-weight: bold;
-  transition: 0.2s linear;
+  /* background-color: rgb(170, 148, 86); */
   /* margin-bottom: 2rem; */
 }
 
@@ -135,11 +138,13 @@
   /* background-color: #32779d; */
   text-decoration: underline;
   color: #877cfe;
+  transition: 0.2s linear;
 }
 
 .profile-nav-btn-blue {
   background-color: rgb(86, 158, 170);
   color: rgb(248, 244, 244);
+  transition: 0.2s linear;
 }
 
 .profile-nav-btn-blue:hover {

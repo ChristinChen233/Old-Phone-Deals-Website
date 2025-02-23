@@ -78,10 +78,11 @@ async function editProfile(req, res) {
 }
 
 async function changePassword(req, res) {
-  const { email, currentPassword, newPassword } = req.body;
+  const { email, currentPassword, newPassword, usrId } = req.body;
+  const usrIdObj = new mongoose.Types.ObjectId(usrId)
 
   try {
-    const currUser = await User.findOne({ email: email });
+    const currUser = await User.findOne({ _id: usrIdObj });
 
     if (!currUser) {
       return res.json("no user");
@@ -107,11 +108,13 @@ async function changePassword(req, res) {
       return res.json("invalid psw");
     }
     const hashPSW = bcrypt.hashSync(newPassword, salt);
-    await User.findOneAndUpdate({ email: email }, { password: hashPSW });
+    await User.findOneAndUpdate({ _id: usrIdObj }, { password: hashPSW });
+
+    const usrEmail = currUser.email;
 
     //send email
     await sendEmail(
-      email,
+      usrEmail,
       "Your password has been changed",
       "Your password has been changed successfully."
     );

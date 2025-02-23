@@ -195,7 +195,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="checkout-container">
+    <div className="checkout-container page-container">
       <h2>Shopping Cart Items</h2>
       {errorMsg && <p>{errorMsg}</p>}
       <button onClick={goBack} className="btn btn-blue">
@@ -226,7 +226,7 @@ const Checkout = () => {
                   Price of Each Item: <strong>$ {item.price}</strong>
                 </p>
                 <p>
-                  Total Price: <strong>$ {item.price * item.num}</strong>
+                  Total Price: <strong>$ {Math.round(item.price * item.num)}</strong>
                 </p>
                 <button
                   id="delete"
@@ -238,7 +238,7 @@ const Checkout = () => {
             </div>
           ))}
 
-          <h2>Total price: $ {totalPrice}</h2>
+          <h2>Total price: $ {Math.round(totalPrice)}</h2>
           <button id="checkout" onClick={pay} className="btn btn-green">
             confirm the transaction
           </button>

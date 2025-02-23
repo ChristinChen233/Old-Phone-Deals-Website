@@ -2,31 +2,39 @@
 /* Navigation Bar Styles */
 /* ---------------------- */
 .nav {
-  position: fixed;
-  flex: 0.2;
-  top: 0;
-  left: 0;
-  width: 100%;
+  flex:1;
   background-color: rgb(3, 62, 120);
-  padding: 3rem 10rem;
+  padding: 2rem 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
 }
 
 .nav-logo {
   font-size: 3rem;
   font-weight: 700;
+  flex-grow: 2;
 }
 
 .nav-list {
-  width: 40%;
-  font-size: 1.7rem;
+  width: auto;
+  font-size: auto;
+  flex-grow: 8;
   justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav-items {
   margin-right: 2rem;
+  margin-bottom: 0;
+  margin-top: 0;
   padding-bottom: 1rem;
   border-bottom: solid 2px transparent;
   transition: 0.3s linear;
+  /* border:solid 1px  #ffd98d; */
 }
 
 .nav-items:hover,

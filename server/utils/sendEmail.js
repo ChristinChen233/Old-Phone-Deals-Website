@@ -1,5 +1,7 @@
 const nodemailer = require("nodemailer");
-const { SENDER, PASSWORD } = require("../env");
+require("dotenv").config();
+const SENDER = process.env.SENDER;
+const PASSWORD = process.env.PASSWORD;
 
 const sendEmail = async (email, subject, url) => {
   if (!email || !subject || !url) {

@@ -21,7 +21,7 @@ function ViewComments() {
           `${baseURL}/profile/get-comments-by-user?currentUserId=${currentUser.userId}`
         );
 
-        console.log(res.data.comments);
+       // console.log(res.data.comments);
         setErrorMsg("");
         /*
                 res.data.comments should be in format below
@@ -38,7 +38,7 @@ function ViewComments() {
                 ],
             */
         if (res.data === "no item") {
-          console.log(res.data);
+         //.log(res.data);
           // alert("something went wrong, please login again");
           setErrorMsg("something went wrong, please login again");
           return;

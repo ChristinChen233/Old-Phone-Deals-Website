@@ -4,7 +4,11 @@ const app = express();
 var mongoose = require("mongoose");
 
 // ENV virables
-const { DB_USERNAME, DB_PASSWORD, BACK_PORT } = require("./env.js");
+require("dotenv").config();
+
+const BACK_PORT = process.env.PORT || 8000;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
 // Connecting to database
 mongoose

@@ -32,7 +32,7 @@ const AddPhoneListing = () => {
           currentUserId: currUser.userId,
         }
       );
-      console.log(response.data);
+     //.log(response.data);
 
       // Reset the form and state values
       setTitle("");

@@ -1,5 +1,6 @@
 const PhoneListModel = require("../model/PhoneListModel");
 const UserListModel = require("../model/userlist");
+const mongoose = require("mongoose");
 
 module.exports.getPhoneLists = async (req, res) => {
   try {
@@ -74,12 +75,20 @@ module.exports.addComment = async (req, res) => {
         .status(404)
         .send({ status: "error", message: "Phone or user not found" });
     }
-    const reviewer = currentUserId;
-    const reviewerName = user.firstname + " " + user.lastname;
+    const newReview = {
+      _id: new mongoose.Types.ObjectId(), // Assign a unique ObjectId to the review
+      reviewUploadTime: new Date(), // Store the current timestamp
+      reviewer: currentUserId, 
+      reviewerName: user.firstname + " " + user.lastname,
+      rating,
+      comment,
+      hidden: false, // Default to visible
+    };
 
-    phone.reviews.push({ rating, comment, reviewer, reviewerName });
-    const updatedPhone = await phone.save();
-    res.send({ status: "ok", data: updatedPhone });
+    // Add new review to the beginning of the reviews array
+    phone.reviews.unshift(newReview);
+    await phone.save();
+    res.send({ status: "ok", data: newReview });
   } catch (error) {
     console.log(error);
     res.status(500).send({ status: "error", message: "Internal server error" });
