@@ -1,6 +1,10 @@
 # OldPhoneDeals
+Link to the website: [https://userplantform.oldphonedeal.online/](https://userplantform.oldphonedeal.online/)
+OldPhoneDeals is a second-hand mobile phone trading website that features shopping functionalities and a comprehensive user system, including registration, login, listing mobile phones that users want to trade, and managing comments under products. The website's front-end is developed using the React.js framework, while the back-end is built with MVC architechture and Node.js as the programming language, and it interacts with the MongoDB cloud-based database services using mongoose package. The website is deployed on AWS EC2 instances, HTTPS handled by Caddy and Route 53, and ESE for sending emails (still in phase of getting production access).
 
-OldPhoneDeals is a second-hand mobile phone trading website that features shopping functionalities and a comprehensive user system, including registration, login, listing mobile phones that users want to trade, and managing comments under products. The website's front-end is developed using the React.js framework, while the back-end is built with MVC architechture and Node.js as the programming language, and it interacts with the MongoDB cloud-based database services using mongoose package.
+If you are interested, please log in with the test account below to play around with the website:
+Email: shuixingren233@gmail.com
+Password: COmp5347!
 
 ### Main Page
 
@@ -78,8 +82,12 @@ $ npm start
 2. Stop the client with `Ctrl+C`.
 
 ## Developers
-
+### V1: website on local host
 - Main page: [Rina Yoo](https://github.com/RinaYoo) and [Ruoshui(Christin) Chen](https://github.com/ChristinChen233) (full stack)
 - User Authentication system: Christin (full stack)
 - Checkout Page (shopping cart): Christin (front end), [Jingyu(Lucas) Lu](https://github.com/Lu-Whale) (back end)
 - User Profile page: Christin & Lucas (front end), Christin (back end)
+
+### V2: website on cloud with new lay outs and features
+- website backend and front end v2 codes: Christin
+- website deployment: Christin
