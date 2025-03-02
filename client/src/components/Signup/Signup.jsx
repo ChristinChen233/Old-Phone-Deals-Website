@@ -115,6 +115,7 @@ function Signup() {
           lastname,
         })
         .then((res) => {
+          console.log(res)
           //console.log(res.data)
           if (res.data === "exist") {
             setErrs({
@@ -145,9 +146,9 @@ function Signup() {
   }
 
   return (
-    <div className="signup-container">
+    <div className="page-container signup-container">
+      <form action="POST" className="signup-form">
       <h1>Signup</h1>
-      <form action="POST">
         {errMsg && <span className="warn">{errMsg}</span>}
         <div>
           <label htmlFor="email" className="login-label">

@@ -3,13 +3,16 @@ require("dotenv").config();
 const SENDER = process.env.SENDER;
 const PASSWORD = process.env.PASSWORD;
 
-const sendEmail = async (email, subject, url) => {
-  if (!email || !subject || !url) {
+const sendEmail = async (emailTo, subject, url) => {
+  if (!emailTo || !subject || !url) {
     throw new Error("Missing required parameters to send email.");
   }
 
   const emailTransporter = nodemailer.createTransport({
-    service: "hotmail",
+    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user: SENDER,
       pass: PASSWORD,
@@ -18,7 +21,7 @@ const sendEmail = async (email, subject, url) => {
 
   const mailOptions = {
     from: SENDER,
-    to: email,
+    to: emailTo,
     subject: subject,
     text: url,
   };
