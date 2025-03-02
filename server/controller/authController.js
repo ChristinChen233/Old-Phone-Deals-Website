@@ -64,6 +64,7 @@ const login = async (req, res) => {
 };
 
 const signup = async (req, res) => {
+  console.log('sign up function')
   let { email, password, repeatPassword, firstname, lastname } = req.body;
   // password =bcrypt.hashSync(password, salt)
   if (password !== repeatPassword) {
@@ -130,7 +131,17 @@ const signup = async (req, res) => {
           await TokenVerify.deleteMany({ userId: usr_id });
           await TokenForgetPsw.deleteMany({ userId: usr_id });
           await UserList.deleteMany({ email: email });
-          res.json("noexist");
+          await UserList.insertMany([data]);
+          cur_usr = await UserList.findOne({ email: email });
+          let usr_id = cur_usr._id.toString();
+          const token = await new TokenVerify({
+            userId: usr_id,
+            token: crypto.randomBytes(32).toString("hex"),
+          }).save();
+          const url = `${WEBSITE_URL}/users/${usr_id}/verify/${token.token}`;
+          await sendEmail(email, "From OldPhoneDeal Website: Click the Link to Verify Your Email", url);
+          console.log("send (sign up)!");
+          res.json("verify sent");
           return;
         }
         //console.log(`${WEBSITE_URL}/users/${usr_id}/verify/${token.token}`)
