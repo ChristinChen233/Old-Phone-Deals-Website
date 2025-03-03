@@ -47,6 +47,8 @@ const AddCommentForm = (props) => {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           className="comment-textarea"
+          maxLength={500}
+          placeholder="Write your comment (Max 500 characters)"
           required
         />
         <input

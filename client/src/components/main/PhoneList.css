@@ -6,10 +6,10 @@
   border-radius: 5px;
   margin-bottom: 3rem;
   display: flex;
-  justify-content: center;
-  gap: 20%;
-  padding: 2rem 0;
-  background-color: #84bbf1;
+  justify-content: space-around;
+  gap: 5%;
+  padding: 2rem 1rem;
+  background-color:rgb(186, 220, 241);
 }
 
 .left-par {
@@ -23,8 +23,26 @@
 }
 
 .input-phone-name {
-  width: 25rem;
   text-transform: capitalize;
+  width: 80%;
+}
+
+@media (max-width: 768px) { 
+  .phone-details {
+    height: 1rem;
+    flex-basis: 100%;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .phone-details > img {
+    transform: scale(0.5);
+    z-index: 0;
+  }
+  .btn-container {
+    justify-content: center;
+    gap: 0.2rem;
+  }
 }
 
 .phone-details {
@@ -39,7 +57,7 @@
 }
 
 .phone-details:hover {
-  background-color: #c8e0f8;
+  background-color: rgb(186, 220, 241);
 }
 
 .phone-link {
@@ -129,6 +147,17 @@
 
 .comment-table td {
   padding: 1rem;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+.comment-table td:first-child{
+  width: 80%;
+  word-break: break-all;
+  text-align: left;
+}
+
+.comment-table td:last-child{
+  width: 15%;
 }
 
 .comment-table tr:nth-child(even) {
@@ -159,7 +188,7 @@
   border: 2px solid #ccc;
   border-radius: 5px;
   resize: none;
-  height: 40px;
+  height: 100px;
 }
 
 .comment-number {

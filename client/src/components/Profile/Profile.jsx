@@ -4,6 +4,7 @@ import ChangePassword from "./tabs/changePassword";
 import ManageListings from "./tabs/manageListings";
 import ViewComments from "./tabs/viewComments";
 import "./Profile.css";
+import SessionExpireAlertBox from "../utils-comp/SessionExpireAlertBox"
 import Cookies from "universal-cookie";
 
 const Profile = () => {
@@ -94,14 +95,18 @@ const Profile = () => {
         return <EditProfile />;
     }
   };
-  
 
+  if(user) {
+    return (
+      <div className="profile-container page-container">
+        <Bars mode={mode} />
+        {renderContent()}
+      </div>
+    );
+  }
   return (
-    <div className="profile-container page-container">
-      <Bars mode={mode} />
-      {renderContent()}
-    </div>
-  );
+    <SessionExpireAlertBox></SessionExpireAlertBox>
+  )
 };
 
 export default Profile;
