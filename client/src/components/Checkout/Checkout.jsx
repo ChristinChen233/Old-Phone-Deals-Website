@@ -5,6 +5,7 @@ import { baseURL } from "../../utils/constant";
 import "../../index.css";
 import "./Checkout.css";
 import Cookies from "universal-cookie";
+import SessionExpireAlertBox from "../utils-comp/SessionExpireAlertBox"
 
 const Checkout = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -194,6 +195,10 @@ const Checkout = () => {
     navigate(-1);
   }
 
+  if(!currentUser) {
+    return <SessionExpireAlertBox></SessionExpireAlertBox>
+  }
+
   return (
     <div className="checkout-container page-container">
       <h2>Shopping Cart Items</h2>
@@ -202,16 +207,17 @@ const Checkout = () => {
         &larr; Back
       </button>
       <br></br>
+      <br></br>
       {phones && phones.length ? (
         <div>
           {phones.map((item, index) => (
             <div key={index} className="cart-list-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title} />
-              <div>
+              <div className="cart-list-contents">
                 <Link
                   to={`/phone/${item.phone_id}`}
                   className="checkout-heading">
-                  <p>{item.title}</p>
+                  <p>{item.title.length > 100 ? item.title.substring(0, 100)+'...' : item.title}</p>
                 </Link>
                 <p>
                   Quantity:{" "}

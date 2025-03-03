@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../utils/constant";
-import "../Login/Login.css";
+import Cookies from "universal-cookie";
 
 const EmaiilVerify = () => {
   const [validUrl, setValidUrl] = useState(true);
   const param = useParams();
+  const cookies = new Cookies();
+  const currUser = cookies.get("currentUser");
 
   useEffect(() => {
     const checkEmailUrl = async () => {
@@ -28,17 +30,19 @@ const EmaiilVerify = () => {
   }, [param]);
 
   return (
-    <div className="login-container">
+    <div className="page-container form-container">
+      <div className="form-body">
       {validUrl ? (
         <h1>
           Email verified successfully.{" "}
-          <Link to="/login" className="login-link">
+          {!currUser && <Link to="/login">
             Login
-          </Link>
+          </Link>}
         </h1>
       ) : (
         <h1>Link has expired! Please register your account again</h1>
       )}
+      </div>
     </div>
   );
 };

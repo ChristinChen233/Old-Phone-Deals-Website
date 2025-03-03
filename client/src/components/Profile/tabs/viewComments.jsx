@@ -96,7 +96,8 @@ function ViewComments() {
         <div>
           <h3>Comments Left to You</h3>
           <br></br>
-          {comments.map((item, index) => (
+          {comments.map((item, index) => {
+            return (
             <div key={index} className="manage-comments-container">
               <img src={`./imgs/${item.brand}.jpeg`} alt={item.title}></img>
               <div className="profile-comments-right">
@@ -127,7 +128,7 @@ function ViewComments() {
               </div>
               <br></br>
             </div>
-          ))}
+          )})}
         </div>
       ) : (
         <div>

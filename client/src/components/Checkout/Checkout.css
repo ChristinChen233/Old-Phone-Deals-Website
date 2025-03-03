@@ -1,6 +1,27 @@
 .checkout-container {
-  margin: 10% 20%;
-  font-size: large;
+  font-size: medium;
+}
+
+@media (max-width: 768px) { 
+  .checkout-container {
+    font-size: small;
+  }
+  .checkout-container button {
+    margin-left: 10px;
+  }
+  .cart-list-container > img {
+    width: 100px; /* Fixed image size */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px; /* Add spacing between image and text */
+    margin-left: 5px;
+  }
+  .cart-list-container {
+    height: 100px;
+  }
+  .cart-list-contents {
+    height: 100%;
+    padding: 1px 2px;
+  }
 }
 
 .checkout-btn-green:hover {
@@ -16,14 +37,14 @@
 }
 
 .checkout-label {
-  text-align: left;
-  padding: 0.25rem;
+  /* text-align: left; */
+  /* padding: 0.25rem; */
   font-weight: bold;
-  margin: 0 0 2rem;
+  /* margin: 0 0 2rem; */
 }
 
 .checkout-heading {
-  color: #18687c;
+  color: #000000;
   font-size: larger;
 }
 
@@ -32,18 +53,44 @@
 }
 
 .cart-list-container {
-  line-height: 120%;
+  /* line-height: 100%; */
   display: flex;
-  gap: 4rem;
+  /* column-gap: 1px; */
+  /* row-gap: 0; */
   align-items: center;
-  background-color: #c8e0f8;
-  border: solid #314789 2px;
-  border-radius: 5px;
-  padding: 1.5rem;
-  margin: 2rem 0;
+  justify-content: baseline;
+  /* background-color: rgb(186, 220, 241); */
+  border-bottom: solid #314789 2px;
+  height: 180px;
+  margin-bottom: 5px;
+  /* padding: 1px 2px; */
+  /* border-radius: 5px; */
+  /* padding: 1.5rem; */
+}
+.cart-list-container:last-of-type {
+   /* Remove border for the last item */
+}
+
+.cart-list-container p{
+  margin-bottom: 3px;
+}
+.cart-list-contents {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  height: 100%;
+  padding: 3px 4px 5px 4px;
+}
+
+.cart-list-contents button{
+  width: 70%;
+  font-size: medium;
 }
 
 .cart-list-container > img {
-  width: 35%;
-  border-radius: 5px;
+  width: 170px; /* Fixed image size */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Add spacing between image and text */
+  margin-left: 20px;
 }

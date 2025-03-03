@@ -66,16 +66,15 @@ function Login() {
   }
 
   return (
-    <form onSubmit={submit} className="login-container">
+    <div className="page-container form-container">
+    <form onSubmit={submit} className="form-body">
       <h1>Login</h1>
       {errMsg && <span className="warn">{errMsg}</span>}
-      <div>
-        <label htmlFor="email" className="login-label">
+      <div className="form-group">
+        <label htmlFor="email">
           Email:
         </label>
-        <br></br>
         <input
-          className="login-input"
           type="text"
           placeholder="put_your_email_here@gmail.com"
           id="email"
@@ -84,17 +83,15 @@ function Login() {
           value={email}
           required
         />
-        <br></br>
         {errs.email && <span className="warn">{errs.email}</span>}
       </div>
 
-      <div>
-        <label htmlFor="password" className="login-label">
+      <div className="form-group">
+        <label htmlFor="password">
           Password:
         </label>
         <br></br>
         <input
-          className="login-input"
           type="password"
           placeholder=""
           id="password"
@@ -102,19 +99,16 @@ function Login() {
           value={password}
           required
         />
-        <br></br>
         {errs.password && <span className="warn">{errs.password}</span>}
       </div>
 
       {msg && <p className="suc">{msg}</p>}
-
-      <button type="submit" className="btn btn-green" id="submit">
+      <div className="form-group">
+      <button type="submit" className="btn" id="submit">
         Log In
       </button>
-      {/* <button className="login-btn" id="test" onClick={test}>
-          test
-        </button> */}
-      <br></br>
+      </div>
+      <div className="form-group">
       <strong>
         No account?{" "}
         <Link to="/signup" className="login-link">
@@ -123,14 +117,15 @@ function Login() {
         !
       </strong>
       <br></br>
-
       <strong>
         <Link to="/forgetpsw" className="login-link">
           Forget your password
         </Link>
         ?
       </strong>
+      </div>
     </form>
+    </div>
   );
 }
 

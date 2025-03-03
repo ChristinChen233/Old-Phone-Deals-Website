@@ -70,38 +70,39 @@ function ForgetPsw() {
     }
   }
   return (
-    <div className="login-container">
+    <div className="page-container form-container">
+      <form action="POST" className="form-body">
       <h1>Forget Password</h1>
-      <form action="POST">
-        <p>
+        <span>
           Please input your email and click the button below, we will send you a
           link for resetting your password!
-        </p>
-        <label htmlFor="email" className="login-label">
-          Email:
-        </label>
-        <br></br>
-        <input
-          className="login-input"
-          type="text"
-          placeholder="put_your_email_here@gmail.com"
-          id="email"
-          autoComplete="off"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
+        </span>
+        <div className="form-group">
+          <label htmlFor="email">
+            Email:
+          </label>
+          <input
+            type="text"
+            placeholder="put_your_email_here@gmail.com"
+            id="email"
+            autoComplete="off"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
         <br></br>
         {errs.email && <span className="warn">{errs.email}</span>}
-        {msg && <p className="suc">{msg}</p>}
-        <button
-          type="submit"
-          className="btn btn-green"
-          id="send-reset"
-          onClick={sendLink}>
-          Send reset password Link
-        </button>
-        <br></br>
+        {msg && <span className="suc">{msg}</span>}
+        </div>
+        <div className="form-group">
+          <button
+            type="submit"
+            className="btn"
+            id="send-reset"
+            onClick={sendLink}>
+            Send reset password Link
+          </button>
+        </div>
         <strong>
           No account?{" "}
           <Link to="/signup" className="login-link">

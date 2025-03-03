@@ -11,6 +11,32 @@
   flex-wrap: nowrap;
 }
 
+@media (max-width: 768px) { /* iPhone size or smaller screens */
+  .nav {
+    display: grid;
+    grid: 40px / auto;
+  }
+  .nav-logo  {
+    font-size: auto;
+    font-weight: normal;
+    height: 100%;
+    flex: none;
+  }
+
+  .nav-list {
+    font-size: small;
+    flex: none;
+    justify-content: left;
+    align-items: left;
+  }
+  .nav-items {
+    padding: 0.2px 0.5;
+    border-bottom: dashed 1px rgb(214, 207, 255);
+    transition: 0.3s linear;
+    flex: none;
+  }
+}
+
 .nav-logo {
   font-size: 3rem;
   font-weight: 700;

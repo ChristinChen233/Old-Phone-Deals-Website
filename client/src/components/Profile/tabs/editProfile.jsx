@@ -1,8 +1,7 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "../../../utils/constant";
 import "../../../index.css";
-// import Popup from "reactjs-popup";
 import Cookies from "universal-cookie";
 
 function EditProfile() {

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../../index.css";
-import "../Login/Login.css";
-import "./Signup.css";
 import { baseURL } from "../../utils/constant";
 
 function Signup() {
@@ -146,16 +144,15 @@ function Signup() {
   }
 
   return (
-    <div className="page-container signup-container">
-      <form action="POST" className="signup-form">
-      <h1>Signup</h1>
+    <div className="page-container form-container">
+      <form action="POST" className="form-body">
+        <h1>Signup</h1>
         {errMsg && <span className="warn">{errMsg}</span>}
-        <div>
-          <label htmlFor="email" className="login-label">
+        <div className="form-group">
+          <label htmlFor="email">
             Email:
           </label>
           <input
-            className="signup-input"
             type="text"
             placeholder="put_your_email_here@gmail.com"
             id="email"
@@ -168,12 +165,11 @@ function Signup() {
           {errs.email && <span className="warn">{errs.email}</span>}
         </div>
 
-        <div>
-          <label htmlFor="password" className="login-label">
+        <div className="form-group">
+          <label htmlFor="password">
             Password:
           </label>
           <input
-            className="signup-input"
             type="password"
             placeholder=""
             id="password"
@@ -185,12 +181,11 @@ function Signup() {
           {errs.password && <span className="warn">{errs.password}</span>}
         </div>
 
-        <div>
-          <label htmlFor="repeatPassword" className="login-label">
+        <div className="form-group">
+          <label htmlFor="repeatPassword">
             Repeat Password:
           </label>
           <input
-            className="signup-input"
             type="password"
             placeholder="repeat password"
             id="repeatPassword"
@@ -202,12 +197,11 @@ function Signup() {
           {errs.password && <span className="warn">{errs.password}</span>}
         </div>
 
-        <div>
-          <label htmlFor="firstname" className="login-label">
+        <div className="form-group">
+          <label htmlFor="firstname">
             Firstname:
           </label>
           <input
-            className="signup-input"
             type="text"
             placeholder="your first name"
             id="firstname"
@@ -220,12 +214,11 @@ function Signup() {
           {errs.firstname && <span className="warn">{errs.firstname}</span>}
         </div>
 
-        <div>
-          <label htmlFor="lastname" className="login-label">
+        <div className="form-group">
+          <label htmlFor="lastname">
             Lastname:
           </label>
           <input
-            className="signup-input"
             type="text"
             placeholder="your last name"
             id="lastname"
@@ -235,22 +228,23 @@ function Signup() {
             required
           />
           <br></br>
+          {msg && <span className="suc">{msg}</span>}
           {errs.lastname && <span className="warn">{errs.lastname}</span>}
         </div>
-
-        {msg && <p className="suc">{msg}</p>}
-
+        <div className="form-group">
         <button
           type="submit"
-          className="btn btn-green"
+          className="btn"
           id="submit"
           onClick={submit}>
           Register
         </button>
-        <br></br>
-        <Link to="/login" className="signup-link">
-          Login Page
-        </Link>
+        </div>
+        <div className="form-group">
+          <Link to="/login">
+            Login Page
+          </Link>
+        </div>
       </form>
     </div>
   );

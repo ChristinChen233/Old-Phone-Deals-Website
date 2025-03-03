@@ -1,7 +1,4 @@
-.profile-container {
-  /* //margin: 10%;
-  flex:1; */
-}
+
 
 .profile-greeting {
   font-size: larger;
@@ -12,6 +9,7 @@
   /* margin: 0% 10%; */
   /* border: 2px solid #033e78; */
   padding-left: 5%;
+  padding-right: 5%;
   font-size: large;
   /* display: flex;
   flex-direction: column; */
@@ -68,27 +66,32 @@
 
 .manage-comments-container {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50%;
-  margin: auto;
-  border: solid 2px #60a4b3;
-  border-collapse: collapse;
-  padding: 15px 0px 10px 10px;
+  align-items: center;
+  justify-content: baseline;
+  border-bottom: solid #314789 2px;
+  height: 100%;
+  margin-bottom: 5px;
 }
 
 .manage-comments-container > img {
-  flex: 0.2;
-  width: 15%;
-  height: 7%;
+  width: 150px; /* Fixed image size */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Add spacing between image and text */
+  margin-left: 20px;
 }
 
+.manage-comments-container p{
+  margin-bottom: 5px;
+}
+
+
 .profile-comments-right {
+  flex: 5;
   display: flex;
-  flex: 0.7;
   flex-direction: column;
-  align-items: stretch;
-  margin: 0% 2%;
+  justify-content: stretch;
+  height: 100%;
+  padding: 3px 4px 5px 4px;
 }
 
 .profile-comments {
@@ -96,7 +99,10 @@
   padding: 10px 10px;
   width: 100%;
   border: 2px dashed rgb(145, 167, 214);
-  border-radius: 2%;
+  border-radius: 5px;
+  height: 100%;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .profile-input:focus {
