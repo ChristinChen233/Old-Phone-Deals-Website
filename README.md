@@ -1,9 +1,9 @@
 # OldPhoneDeals
 Link to the website: [https://userplantform.oldphonedeal.online/](https://userplantform.oldphonedeal.online/)
 
-OldPhoneDeals is a second-hand mobile phone trading website that features shopping functionalities and a comprehensive user system, including registration, login, listing mobile phones that users want to trade, and managing comments under products. The website's front-end is developed using the React.js framework, while the back-end is built with MVC architechture and Node.js as the programming language, and it interacts with the MongoDB cloud-based database services using mongoose package. The website is deployed on AWS EC2 instances, HTTPS handled by Caddy and Route 53, and ESE for sending emails (still in phase of getting production access).
+OldPhoneDeals is a second-hand mobile phone trading website that features shopping functionalities and a comprehensive user system, including registration, login, listing mobile phones that users want to trade, and managing comments under products. The website's front-end is developed using the React.js framework, while the back-end is built with MVC architechture and Node.js as the programming language, and it interacts with the MongoDB cloud-based database services using mongoose package. The website is deployed on AWS EC2 instances, and HTTPS handled by Caddy and Route 53.
 
-If you are interested, please log in with the test account below to play around with the website:
+If you are interested, feel free to register your new account or log in with the test account below to play around  the website:
 
 Email: shuixingren233@gmail.com
 
