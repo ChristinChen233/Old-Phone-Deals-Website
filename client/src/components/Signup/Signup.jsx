@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 import "../../index.css";
 import { baseURL } from "../../utils/constant";
 
@@ -14,6 +14,8 @@ function Signup() {
   const [msg, setMsg] = useState("");
   const [indicator, setIndicator] = useState(false);
   const [errs, setErrs] = useState({});
+  const [openCover, setOpenCover] = useState(false);
+  const [verifySent, setVerifySent] = useState(false)
 
   function validation(values) {
     let err = {};
@@ -104,6 +106,7 @@ function Signup() {
         console.log("errs in input");
         return;
       }
+      setOpenCover(true);
       await axios
         .post(`${baseURL}/signup`, {
           email,
@@ -128,8 +131,9 @@ function Signup() {
           }
           if (res.data === "verify sent") {
             setMsg(
-              "A verification link has been sent to your email\n Please login after verification"
+              "A verification link has been sent to your email\n Please login after verification.\nPlease check the span if can't find in your mail box"
             );
+            setVerifySent(true)
           }
           if (res.data === "err") {
             setErrMsg("Something wrong with mango db");
@@ -137,18 +141,31 @@ function Signup() {
           if (res.data === "insert") {
             setMsg("Insertted your data");
           }
+          setOpenCover(false);
         });
     } catch (e) {
       console.log(e);
+      setOpenCover(false);
     }
   }
 
   return (
     <div className="page-container form-container">
+      {openCover && (
+      <div id="cover" className="cover">
+        <div className="form-body" id="cover-inner-box">
+          <div className="form-group cover-inner-form-group">
+            <h1 style={{textAlign:"center"}}>Registering...</h1>
+          </div>
+        </div>
+      </div>
+    )}
       <form action="POST" className="form-body">
         <h1>Signup</h1>
         {errMsg && <span className="warn">{errMsg}</span>}
-        <div className="form-group">
+        {!verifySent && (
+          <>
+          <div className="form-group">
           <label htmlFor="email">
             Email:
           </label>
@@ -228,7 +245,6 @@ function Signup() {
             required
           />
           <br></br>
-          {msg && <span className="suc">{msg}</span>}
           {errs.lastname && <span className="warn">{errs.lastname}</span>}
         </div>
         <div className="form-group">
@@ -236,10 +252,13 @@ function Signup() {
           type="submit"
           className="btn"
           id="submit"
-          onClick={submit}>
+          onClick={submit}
+          >
           Register
         </button>
-        </div>
+        </div> </>)}
+
+        {msg && <span className="suc">{msg}</span>}
         <div className="form-group">
           <Link to="/login">
             Login Page
