@@ -37,7 +37,7 @@ function Login() {
             setMsg("Logged in");
           }
           if (res.data === "noexist") {
-            setErrs({ email: "You input wrong email" });
+            setErrs({ email: "You email does not exist in our data base" });
           }
           if (res.data === "noverify") {
             setErrs({
@@ -67,7 +67,8 @@ function Login() {
 
   return (
     <div className="page-container form-container">
-    <form onSubmit={submit} className="form-body">
+    <form onSubmit={submit} 
+    className="form-body">
       <h1>Login</h1>
       {errMsg && <span className="warn">{errMsg}</span>}
       <div className="form-group">

@@ -128,13 +128,13 @@ const signup = async (req, res) => {
         let usr_id = cur_usr._id.toString();
         let token = await TokenVerify.findOne({ userId: usr_id });
         if (!token) {
-          await TokenVerify.deleteMany({ userId: usr_id });
+          //await TokenVerify.deleteMany({ userId: usr_id });
           await TokenForgetPsw.deleteMany({ userId: usr_id });
           await UserList.deleteMany({ email: email });
           await UserList.insertMany([data]);
           cur_usr = await UserList.findOne({ email: email });
-          let usr_id = cur_usr._id.toString();
-          const token = await new TokenVerify({
+          usr_id = cur_usr._id.toString();
+          token = await new TokenVerify({
             userId: usr_id,
             token: crypto.randomBytes(32).toString("hex"),
           }).save();

@@ -133,6 +133,30 @@ Link {
   flex: 0.5;
 }
 
+#cover {
+  position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background:rgba(186, 220, 241, 0.23);
+    /* opacity: 0.2; */
+    z-index: 10;
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Horizontal Center */
+    align-items: center; /* Vertical Center */
+}
+
+#cover-inner-box {
+  z-index: 11;
+  background-color: rgb(186, 220, 241);
+  box-shadow: none;
+  width: 100%;
+}
+
 .form-body span {
   overflow-wrap: break-word;
 }

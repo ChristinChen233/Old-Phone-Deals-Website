@@ -47,7 +47,10 @@ module.exports.getPhoneListsById = async (req, res) => {
       phone.sellerName = user.firstname + " " + user.lastname;
     }
 
-    const updatedReviews = phone.reviews.map(async (review) => {
+    const updatedReviews = phone.reviews.filter((review) => {
+      if(review.hidden == false) {
+        return review}
+    }).map(async (review) => {
       const reviewer = await UserListModel.findById(review.reviewer);
       if (reviewer) {
         review.reviewerName = reviewer.firstname + " " + reviewer.lastname;
